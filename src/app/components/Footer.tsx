@@ -49,7 +49,7 @@ export default function Footer() {
         <p className="developer-credit">
           Developed by{" "}
           <a
-            href="https://vickins-technologies.onrender.com/"
+            href="https://vickins-technologies-lv2h.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
           >
