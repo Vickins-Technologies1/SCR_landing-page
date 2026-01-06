@@ -7,10 +7,10 @@ const Preloader = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Total duration: ~2.4 seconds of animation before fade out
+    // Hide after ~2.6 seconds of animation
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 2400);
+    }, 2600);
 
     return () => clearTimeout(timer);
   }, []);
@@ -19,78 +19,73 @@ const Preloader = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-white"
       style={{
-        background: "#000000",
         opacity: isVisible ? 1 : 0,
-        transition: "opacity 1s ease-out 0.3s",
+        transition: "opacity 1s ease-out 0.4s",
         pointerEvents: isVisible ? "auto" : "none",
       }}
     >
-      {/* Animated Background Glow Layers */}
-      <div className="absolute inset-0">
+      {/* Subtle Background Glow (Premium Soft Light) */}
+      <div className="absolute inset-0 overflow-hidden">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-glow-pulse"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl animate-soft-glow"
           style={{ animationDelay: "0s" }}
         />
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-400/30 rounded-full blur-3xl animate-glow-pulse"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-soft-glow"
           style={{ animationDelay: "0.8s" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-primary/10 rounded-full blur-3xl animate-glow-pulse"
-          style={{ animationDelay: "1.6s" }}
         />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center space-y-12">
-        {/* Logo Container with Elegant Scale + Fade In */}
+      {/* Main Content - Clean & Elegant */}
+      <div className="relative z-10 flex flex-col items-center justify-center space-y-10">
+        {/* Logo with Smooth Fade + Slight Scale In */}
         <div
-          className="opacity-0 translate-y-8"
+          className="opacity-0 scale-90"
           style={{
-            animation: "revealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-            animationDelay: "0.3s",
+            animation: "revealScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+            animationDelay: "0.4s",
           }}
         >
-          <div className="p-8 bg-black/40 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl">
+          <div className="p-6 bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-100">
             <Image
               src="/logo.png"
               alt="Smart Choice Rental Management"
-              width={140}
-              height={140}
-              className="object-contain drop-shadow-2xl"
+              width={120}
+              height={120}
+              className="object-contain drop-shadow-md"
               priority
             />
           </div>
         </div>
 
-        {/* Brand Name with Letter-by-Letter Reveal */}
+        {/* Brand Name - Sophisticated Letter Reveal */}
         <div
           className="text-center opacity-0"
           style={{
             animation: "revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-            animationDelay: "0.8s",
+            animationDelay: "0.9s",
           }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold tracking-wider">
-            <span className="inline-block overflow-hidden">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+            <span className="inline-block overflow-hidden align-bottom">
               <span
-                className="inline-block text-white/90 translate-y-full"
+                className="inline-block text-gray-800 translate-y-full"
                 style={{
                   animation: "slideUpLetters 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-                  animationDelay: "1.2s",
+                  animationDelay: "1.3s",
                 }}
               >
                 Smart
               </span>
             </span>{" "}
-            <span className="inline-block overflow-hidden">
+            <span className="inline-block overflow-hidden align-bottom">
               <span
-                className="inline-block bg-gradient-to-r from-cyan-300 via-cyan-100 to-white bg-clip-text text-transparent translate-y-full"
+                className="inline-block bg-gradient-to-r from-cyan-600 to-cyan-500 bg-clip-text text-transparent translate-y-full"
                 style={{
                   animation: "slideUpLetters 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-                  animationDelay: "1.5s",
+                  animationDelay: "1.6s",
                 }}
               >
                 Choice
@@ -99,36 +94,44 @@ const Preloader = () => {
           </h1>
 
           <p
-            className="mt-4 text-lg md:text-xl text-white/60 font-medium tracking-wide opacity-0"
+            className="mt-5 text-lg md:text-xl text-gray-500 font-medium tracking-wide opacity-0"
             style={{
-              animation: "fadeIn 1.2s ease-out forwards",
-              animationDelay: "2.1s",
+              animation: "fadeIn 1.4s ease-out forwards",
+              animationDelay: "2.2s",
             }}
           >
             Rental Management Excellence
           </p>
         </div>
 
-        {/* Minimal Progress Bar */}
+        {/* Sleek Minimal Progress Indicator */}
         <div
-          className="w-48 h-0.5 bg-white/10 rounded-full overflow-hidden opacity-0"
+          className="w-64 h-1 bg-gray-200/60 rounded-full overflow-hidden opacity-0"
           style={{
             animation: "fadeIn 0.8s ease-out forwards",
-            animationDelay: "1s",
+            animationDelay: "1.1s",
           }}
         >
           <div
-            className="h-full bg-gradient-to-r from-cyan-400 to-cyan-300 rounded-full"
+            className="h-full bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full origin-left"
             style={{
-              width: "100%",
-              animation: "progressFill 2.4s ease-out forwards",
+              transform: "scaleX(0)",
+              animation: "progressFill 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+              animationDelay: "1.1s",
             }}
           />
         </div>
       </div>
 
-      {/* Custom Animations */}
+      {/* Custom Premium Animations */}
       <style jsx>{`
+        @keyframes revealScale {
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
         @keyframes revealUp {
           to {
             opacity: 1;
@@ -148,28 +151,25 @@ const Preloader = () => {
           }
         }
 
-        @keyframes glow-pulse {
+        @keyframes soft-glow {
           0%, 100% {
-            opacity: 0.3;
-            transform: scale(0.9);
+            opacity: 0.2;
+            transform: scale(0.95);
           }
           50% {
-            opacity: 0.6;
-            transform: scale(1.1);
+            opacity: 0.4;
+            transform: scale(1.05);
           }
         }
 
         @keyframes progressFill {
-          from {
-            transform: translateX(-100%);
-          }
           to {
-            transform: translateX(0);
+            transform: scaleX(1);
           }
         }
 
-        .animate-glow-pulse {
-          animation: glow-pulse 4s ease-in-out infinite;
+        .animate-soft-glow {
+          animation: soft-glow 5s ease-in-out infinite;
         }
       `}</style>
     </div>
