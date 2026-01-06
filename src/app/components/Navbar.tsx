@@ -77,8 +77,8 @@ export default function Navbar() {
   return (
     <>
       {/* Fixed Top Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md shadow-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-30 bg-background/100 backdrop-blur-md shadow-md border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" aria-label="Home">
             <Image
