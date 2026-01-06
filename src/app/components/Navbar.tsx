@@ -21,7 +21,7 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Theme handling with localStorage persistence
+  // Theme persistence
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = savedTheme === "dark";
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Define navigation links with external flag
+  // Links configuration
   const navLinks = [
     { href: "/about", label: "About Us", icon: Info },
     {
@@ -78,17 +78,14 @@ export default function Navbar() {
     { href: "/contact-us", label: "Contact Us", icon: Mail },
   ];
 
-  // Unified click handler: internal → Next.js Link, external → new tab
-  const handleNavClick = (href: string, external?: boolean) => {
-    if (external) {
-      window.open(href, "_blank", "noopener,noreferrer");
-    }
-    closeMobileMenu(); // Always close mobile menu
+  const handleExternalClick = (href: string) => {
+    window.open(href, "_blank", "noopener,noreferrer");
+    closeMobileMenu();
   };
 
   return (
     <>
-      {/* Fixed Top Navbar */}
+      {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-30 bg-background/90 backdrop-blur-md shadow-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
           {/* Logo */}
@@ -103,22 +100,39 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map(({ href, label, icon: Icon, external, highlight }) => (
-              <button
-                key={label}
-                onClick={() => handleNavClick(href, external)}
-                className={`flex items-center space-x-2 text-foreground font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
-                  highlight ? "bg-primary text-primary-foreground px-5 py-2 rounded-full shadow-md hover:bg-primary/90" : ""
-                }`}
-              >
-                <Icon size={20} className={highlight ? "text-primary-foreground" : "text-primary"} />
-                <span>{label}</span>
-              </button>
-            ))}
+            {navLinks.map(({ href, label, icon: Icon, external, highlight }) =>
+              external ? (
+                <button
+                  key={label}
+                  onClick={() => handleExternalClick(href)}
+                  className={`flex items-center space-x-2 text-foreground font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
+                    highlight
+                      ? "bg-primary text-primary-foreground px-5 py-2 rounded-full shadow-md hover:bg-primary/90"
+                      : ""
+                  }`}
+                >
+                  <Icon size={20} className={highlight ? "text-primary-foreground" : "text-primary"} />
+                  <span>{label}</span>
+                </button>
+              ) : (
+                <Link
+                  key={label}
+                  href={href}
+                  className={`flex items-center space-x-2 text-foreground font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
+                    highlight
+                      ? "bg-primary text-primary-foreground px-5 py-2 rounded-full shadow-md hover:bg-primary/90"
+                      : ""
+                  }`}
+                >
+                  <Icon size={20} className={highlight ? "text-primary-foreground" : "text-primary"} />
+                  <span>{label}</span>
+                </Link>
+              )
+            )}
 
-            {/* Desktop Theme Toggle */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
@@ -132,7 +146,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className="lg:hidden p-2 rounded-lg hover:bg-muted transition"
@@ -143,9 +157,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Menu */}
       <>
-        {/* Backdrop */}
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
@@ -153,7 +166,6 @@ export default function Navbar() {
           />
         )}
 
-        {/* Sidebar */}
         <aside
           className={`fixed inset-y-0 left-0 w-72 bg-background/95 backdrop-blur-xl shadow-2xl border-r border-border z-50 lg:hidden rounded-r-2xl
             transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -182,37 +194,44 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Navigation Links */}
+            {/* Mobile Navigation */}
             <nav className="space-y-2 flex-1">
-              {navLinks.map(({ href, label, icon: Icon, external, highlight }) => (
-                <button
-                  key={label}
-                  onClick={() => handleNavClick(href, external)}
-                  className={`w-full flex items-center space-x-3 text-[1.1rem] font-medium py-3 px-4 rounded-xl transition-all group
-                    ${
+              {navLinks.map(({ href, label, icon: Icon, external, highlight }) =>
+                external ? (
+                  <button
+                    key={label}
+                    onClick={() => handleExternalClick(href)}
+                    className={`w-full flex items-center space-x-3 text-[1.1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
                       highlight
                         ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
                         : "hover:bg-primary/10 hover:text-primary"
                     }`}
-                >
-                  <Icon
-                    size={22}
-                    className={`transition-transform ${
+                  >
+                    <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
+                    <span>{label}</span>
+                  </button>
+                ) : (
+                  <Link
+                    key={label}
+                    href={href}
+                    onClick={closeMobileMenu}
+                    className={`w-full flex items-center space-x-3 text-[1.1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
                       highlight
-                        ? "text-primary-foreground"
-                        : "text-primary group-hover:scale-110"
+                        ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+                        : "hover:bg-primary/10 hover:text-primary"
                     }`}
-                  />
-                  <span>{label}</span>
-                </button>
-              ))}
+                  >
+                    <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
+                    <span>{label}</span>
+                  </Link>
+                )
+              )}
             </nav>
 
-            {/* Theme Toggle in Mobile */}
+            {/* Mobile Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="flex items-center justify-between w-full py-4 px-4 rounded-xl bg-muted border border-border hover:bg-muted-hover transition-all shadow-sm"
-              aria-label="Toggle theme"
             >
               {isDarkMode ? (
                 <Sun size={22} className="text-yellow-500" />
