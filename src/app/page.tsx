@@ -100,7 +100,7 @@ export default function Home() {
   const HomeIcon = House;
 
   const stats = [
-    { icon: DollarSign, label: "Total Rent Collected", value: rentCollected, suffix: "KSH", color: "from-cyan-400 to-cyan-300" },
+    { icon: DollarSign, label: "Total Rent Collected", value: rentCollected, suffix: "+ KSH", color: "from-cyan-400 to-cyan-300" },
     { icon: HomeIcon, label: "Properties Managed", value: propertiesManaged, suffix: "+", color: "from-emerald-400 to-teal-400" },
     { icon: Users, label: "Happy Clients", value: happyClients, suffix: "+", color: "from-blue-500 to-indigo-400" },
     { icon: Award, label: "On-Time Payments", value: onTimePayments, suffix: "%", color: "from-purple-500 to-pink-400" },
