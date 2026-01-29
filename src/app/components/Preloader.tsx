@@ -52,8 +52,8 @@ const Preloader = () => {
             <Image
               src="/logo.png"
               alt="Smart Choice Rental Management"
-              width={120}
-              height={120}
+              width={350}
+              height={150}
               className="object-contain drop-shadow-md"
               priority
             />
@@ -77,8 +77,8 @@ const Preloader = () => {
                   animationDelay: "1.3s",
                 }}
               >
-                Smart
-              </span>
+                Sorana Property
+              </span> 
             </span>{" "}
             <span className="inline-block overflow-hidden align-bottom">
               <span
@@ -88,7 +88,7 @@ const Preloader = () => {
                   animationDelay: "1.6s",
                 }}
               >
-                Choice
+                Managers
               </span>
             </span>
           </h1>
@@ -100,7 +100,7 @@ const Preloader = () => {
               animationDelay: "2.2s",
             }}
           >
-            Rental Management Excellence
+            Property Management Excellence
           </p>
         </div>
 
