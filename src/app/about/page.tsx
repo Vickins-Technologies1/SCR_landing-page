@@ -22,7 +22,7 @@ export default function About() {
         <div className="relative z-10 container mx-auto px-6 text-center">
           <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
             <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-200 bg-clip-text text-transparent">
-              About Smart Choice
+              About Us
             </span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl font-light text-blue-50 max-w-3xl mx-auto opacity-95">
@@ -41,7 +41,7 @@ export default function About() {
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="order-2 lg:order-1">
               <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
-                Smart Choice Rental Management Limited, headquartered in <strong>Kerugoya, Kenya</strong>, is a premier property management firm dedicated to delivering seamless rental solutions for residential, commercial, and mixed-use properties.
+                Sorana Property Managers Limited, headquartered in <strong>Kerugoya, Kenya</strong>, is a premier property management firm dedicated to delivering seamless rental solutions for residential, commercial, and mixed-use properties.
               </p>
               <p className="text-lg md:text-xl text-foreground/90 leading-relaxed mt-6">
                 We combine professional expertise with innovative technology to ensure reliable returns, hassle-free ownership, and exceptional tenant experiences.
@@ -143,10 +143,10 @@ export default function About() {
                 <strong className="text-primary">Email:</strong>
                 <br />
                 <a
-                  href="mailto:smartchoicerentalmanagement@gmail.com"
+                  href="mailto:soranapropertymanagers@gmail.com"
                   className="hover:text-primary transition-colors break-all"
                 >
-                  smartchoicerentalmanagement@gmail.com
+                  soranapropertymanagers@gmail.com
                 </a>
               </li>
             </ul>

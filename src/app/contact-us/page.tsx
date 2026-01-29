@@ -63,10 +63,10 @@ export default function ContactUs() {
                   <div>
                     <p className="text-lg font-semibold">Email</p>
                     <a
-                      href="mailto:smartchoicerentalmanagement@gmail.com"
+                      href="mailto:soranapropertymanagers@gmail.com"
                       className="text-lg text-muted-foreground hover:text-primary transition-colors break-all"
                     >
-                      smartchoicerentalmanagement@gmail.com
+                      soranapropertymanagers@gmail.com
                     </a>
                   </div>
                 </div>

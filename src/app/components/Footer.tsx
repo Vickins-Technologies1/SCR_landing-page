@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-muted py-12 mt-20 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
         <p className="text-muted-foreground text-sm mb-6 md:mb-0">
-          © {new Date().getFullYear()} Smart Choice Rental Management Limited. All rights reserved.
+          © {new Date().getFullYear()} Sorana Property Managers Limited. All rights reserved.
         </p>
 
         <div className="flex space-x-4">

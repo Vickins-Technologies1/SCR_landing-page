@@ -87,14 +87,14 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-30 bg-background/90 backdrop-blur-md shadow-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-1 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0" aria-label="Home">
             <Image
               src="/logo.png"
               alt="Smart Choice Rental Management Logo"
-              width={80}
-              height={70}
+              width={150}
+              height={100}
               className="transition-transform duration-300 hover:scale-105"
               priority
             />
