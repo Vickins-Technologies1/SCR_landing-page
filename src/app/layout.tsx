@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Smart Choice Rental Management",
-  description: "Your trusted partner in rental success",
+  title: "Sorana Property Managers Limited",
+  description: "Your trusted partner in property management success",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
