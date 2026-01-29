@@ -21,7 +21,6 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Theme persistence
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = savedTheme === "dark";
@@ -51,7 +50,6 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Links configuration
   const navLinks = [
     { href: "/about", label: "About Us", icon: Info },
     {
@@ -85,7 +83,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-30 bg-background/90 backdrop-blur-md shadow-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -100,33 +97,33 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Nav – smaller text & tighter spacing */}
+          <div className="hidden lg:flex items-center space-x-5 xl:space-x-6">
             {navLinks.map(({ href, label, icon: Icon, external, highlight }) =>
               external ? (
                 <button
                   key={label}
                   onClick={() => handleExternalClick(href)}
-                  className={`flex items-center space-x-2 text-foreground font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
+                  className={`flex items-center space-x-1.5 text-sm font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
                     highlight
-                      ? "bg-primary text-primary-foreground px-5 py-2 rounded-full shadow-md hover:bg-primary/90"
+                      ? "bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-md hover:bg-primary/90"
                       : ""
                   }`}
                 >
-                  <Icon size={20} className={highlight ? "text-primary-foreground" : "text-primary"} />
+                  <Icon size={18} className={highlight ? "text-primary-foreground" : "text-primary"} />
                   <span>{label}</span>
                 </button>
               ) : (
                 <Link
                   key={label}
                   href={href}
-                  className={`flex items-center space-x-2 text-foreground font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
+                  className={`flex items-center space-x-1.5 text-sm font-medium transition-all duration-300 hover:text-primary hover:translate-y-[-2px] ${
                     highlight
-                      ? "bg-primary text-primary-foreground px-5 py-2 rounded-full shadow-md hover:bg-primary/90"
+                      ? "bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-md hover:bg-primary/90"
                       : ""
                   }`}
                 >
-                  <Icon size={20} className={highlight ? "text-primary-foreground" : "text-primary"} />
+                  <Icon size={18} className={highlight ? "text-primary-foreground" : "text-primary"} />
                   <span>{label}</span>
                 </Link>
               )
@@ -136,12 +133,12 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              className="ml-8 p-3 rounded-full bg-muted transition-all duration-300 hover:bg-muted-hover hover:scale-110"
+              className="ml-4 p-2.5 rounded-full bg-muted transition-all duration-300 hover:bg-muted-hover hover:scale-110"
             >
               {isDarkMode ? (
-                <Sun size={22} className="text-yellow-500" />
+                <Sun size={20} className="text-yellow-500" />
               ) : (
-                <Moon size={22} className="text-foreground" />
+                <Moon size={20} className="text-foreground" />
               )}
             </button>
           </div>
@@ -157,94 +154,92 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <>
-        {isMobileMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
-            onClick={closeMobileMenu}
-          />
-        )}
+      {/* Mobile Menu – slightly smaller text */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          onClick={closeMobileMenu}
+        />
+      )}
 
-        <aside
-          className={`fixed inset-y-0 left-0 w-72 bg-background/95 backdrop-blur-xl shadow-2xl border-r border-border z-50 lg:hidden rounded-r-2xl
-            transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-            ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
-        >
-          <div className="flex flex-col p-7 space-y-8 h-full">
-            {/* Header */}
-            <div className="flex justify-between items-center">
-              <Link href="/" onClick={closeMobileMenu}>
-                <Image
-                  src="/logo.png"
-                  alt="Smart Choice Rental Management Logo"
-                  width={120}
-                  height={60}
-                  className="transition-transform duration-300 hover:scale-105"
-                  priority
-                />
-              </Link>
+      <aside
+        className={`fixed inset-y-0 left-0 w-72 bg-background/95 backdrop-blur-xl shadow-2xl border-r border-border z-50 lg:hidden rounded-r-2xl
+          transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+          ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
+      >
+        <div className="flex flex-col p-6 space-y-7 h-full">
+          {/* Header */}
+          <div className="flex justify-between items-center">
+            <Link href="/" onClick={closeMobileMenu}>
+              <Image
+                src="/logo.png"
+                alt="Smart Choice Rental Management Logo"
+                width={120}
+                height={60}
+                className="transition-transform duration-300 hover:scale-105"
+                priority
+              />
+            </Link>
 
-              <button
-                onClick={closeMobileMenu}
-                className="p-2 rounded-full hover:bg-muted transition"
-                aria-label="Close menu"
-              >
-                <X size={24} className="text-foreground" />
-              </button>
-            </div>
-
-            {/* Mobile Navigation */}
-            <nav className="space-y-2 flex-1">
-              {navLinks.map(({ href, label, icon: Icon, external, highlight }) =>
-                external ? (
-                  <button
-                    key={label}
-                    onClick={() => handleExternalClick(href)}
-                    className={`w-full flex items-center space-x-3 text-[1.1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
-                      highlight
-                        ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
-                        : "hover:bg-primary/10 hover:text-primary"
-                    }`}
-                  >
-                    <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
-                    <span>{label}</span>
-                  </button>
-                ) : (
-                  <Link
-                    key={label}
-                    href={href}
-                    onClick={closeMobileMenu}
-                    className={`w-full flex items-center space-x-3 text-[1.1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
-                      highlight
-                        ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
-                        : "hover:bg-primary/10 hover:text-primary"
-                    }`}
-                  >
-                    <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
-                    <span>{label}</span>
-                  </Link>
-                )
-              )}
-            </nav>
-
-            {/* Mobile Theme Toggle */}
             <button
-              onClick={toggleTheme}
-              className="flex items-center justify-between w-full py-4 px-4 rounded-xl bg-muted border border-border hover:bg-muted-hover transition-all shadow-sm"
+              onClick={closeMobileMenu}
+              className="p-2 rounded-full hover:bg-muted transition"
+              aria-label="Close menu"
             >
-              {isDarkMode ? (
-                <Sun size={22} className="text-yellow-500" />
-              ) : (
-                <Moon size={22} className="text-foreground" />
-              )}
-              <span className="font-medium text-foreground">
-                {isDarkMode ? "Light Mode" : "Dark Mode"}
-              </span>
+              <X size={24} className="text-foreground" />
             </button>
           </div>
-        </aside>
-      </>
+
+          {/* Mobile Navigation */}
+          <nav className="space-y-1.5 flex-1">
+            {navLinks.map(({ href, label, icon: Icon, external, highlight }) =>
+              external ? (
+                <button
+                  key={label}
+                  onClick={() => handleExternalClick(href)}
+                  className={`w-full flex items-center space-x-3 text-[1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
+                    highlight
+                      ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+                      : "hover:bg-primary/10 hover:text-primary"
+                  }`}
+                >
+                  <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
+                  <span>{label}</span>
+                </button>
+              ) : (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={closeMobileMenu}
+                  className={`w-full flex items-center space-x-3 text-[1rem] font-medium py-3 px-4 rounded-xl transition-all group ${
+                    highlight
+                      ? "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+                      : "hover:bg-primary/10 hover:text-primary"
+                  }`}
+                >
+                  <Icon size={22} className={highlight ? "text-primary-foreground" : "text-primary group-hover:scale-110"} />
+                  <span>{label}</span>
+                </Link>
+              )
+            )}
+          </nav>
+
+          {/* Mobile Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-between w-full py-4 px-4 rounded-xl bg-muted border border-border hover:bg-muted-hover transition-all shadow-sm"
+          >
+            {isDarkMode ? (
+              <Sun size={20} className="text-yellow-500" />
+            ) : (
+              <Moon size={20} className="text-foreground" />
+            )}
+            <span className="font-medium text-foreground">
+              {isDarkMode ? "Light Mode" : "Dark Mode"}
+            </span>
+          </button>
+        </div>
+      </aside>
     </>
   );
 }
