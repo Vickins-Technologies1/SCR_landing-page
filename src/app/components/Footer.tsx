@@ -52,7 +52,7 @@ export default function Footer() {
         <p className="text-sm text-muted-foreground">
           Developed by{" "}
           <a
-            href="https://vickins-technologies-lv2h.vercel.app/"
+            href="https://vickins-technologies.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary font-semibold hover:underline"

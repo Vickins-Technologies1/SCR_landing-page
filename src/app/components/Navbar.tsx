@@ -53,7 +53,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/about", label: "About Us", icon: Info },
     {
-      href: "https://app.smartchoicerentalmanagement.com/property-listings",
+      href: "https://app.soranapropertymanagers.com/property-listings",
       label: "Properties",
       icon: Building2,
       external: true,
@@ -61,13 +61,13 @@ export default function Navbar() {
     { href: "/how-it-works", label: "How It Works", icon: Compass },
     { href: "/pricing", label: "Pricing", icon: Wallet },
     {
-      href: "https://app.smartchoicerentalmanagement.com/",
+      href: "https://app.soranapropertymanagers.com/",
       label: "Sign In",
       icon: LogIn,
       external: true,
     },
     {
-      href: "https://app.smartchoicerentalmanagement.com/sign-up",
+      href: "https://app.soranapropertymanagers.com/sign-up",
       label: "Sign Up",
       icon: UserPlus,
       highlight: true,
@@ -89,7 +89,7 @@ export default function Navbar() {
           <Link href="/" className="flex-shrink-0" aria-label="Home">
             <Image
               src="/logo.png"
-              alt="Smart Choice Rental Management Logo"
+              alt="Sorana Logo"
               width={150}
               height={100}
               className="transition-transform duration-300 hover:scale-105"
@@ -173,7 +173,7 @@ export default function Navbar() {
             <Link href="/" onClick={closeMobileMenu}>
               <Image
                 src="/logo.png"
-                alt="Smart Choice Rental Management Logo"
+                alt="Sorana Logo"
                 width={120}
                 height={60}
                 className="transition-transform duration-300 hover:scale-105"
