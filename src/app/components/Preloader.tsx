@@ -100,7 +100,7 @@ const Preloader = () => {
               animationDelay: "2.2s",
             }}
           >
-            Property Management Excellence
+            Caring for your property, Protecting your investment.
           </p>
         </div>
 
