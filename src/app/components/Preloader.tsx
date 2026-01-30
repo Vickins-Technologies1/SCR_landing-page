@@ -96,8 +96,8 @@ const Preloader = () => {
           <p
             className="mt-5 text-lg md:text-xl text-gray-500 font-medium tracking-wide opacity-0"
             style={{
-              animation: "fadeIn 1.4s ease-out forwards",
-              animationDelay: "2.2s",
+              animation: "fadeIn 2.4s ease-out forwards",
+              animationDelay: "1.2s",
             }}
           >
             Caring for your property, Protecting your investment.
