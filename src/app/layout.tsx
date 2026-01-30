@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Sorana Property Managers Limited",
-  description: "Your trusted partner in property management success",
+  description: "Caring for your property, Protecting your investment.",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
