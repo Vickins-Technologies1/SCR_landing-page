@@ -143,7 +143,7 @@ export default function Home() {
     <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
       {/* Primary Button - White text on colored background */}
       <button
-        onClick={() => window.open("https://app.smartchoicerentalmanagement.com/sign-up", "_blank")}
+        onClick={() => window.open("https://app.soranapropertymanagers.com/sign-up", "_blank")}
         className="group bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-8 rounded-full text-base md:text-lg shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
       >
         Get Started Free
