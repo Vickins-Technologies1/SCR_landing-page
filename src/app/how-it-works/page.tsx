@@ -118,7 +118,7 @@ export default function HowItWorks() {
             Join hundreds of property owners across Kenya who trust Smart Choice for reliable, hands-off rental income.
           </p>
           <a
-            href="https://app.smartchoicerentalmanagement.com/sign-up"
+            href="https://app.soranapropertymanagers.com/sign-up"
             className="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-primary-foreground font-bold py-4 px-10 rounded-full text-lg shadow-xl transition-all duration-300 hover:scale-105"
           >
             Get Started Today
