@@ -165,10 +165,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative overflow-hidden pt-28 pb-20">
-        <div className="absolute inset-0">
-          <Image src="/bg.jpg" alt="Modern property" fill className="object-cover" priority />
-        </div>
+      <section className="relative overflow-hidden pt-28 pb-20 bg-[url('/bg.jpg')] bg-cover bg-center bg-fixed">
         <div className="absolute inset-0 bg-gradient-to-br from-foreground/90 via-foreground/75 to-foreground/95" />
         <div className="absolute -top-32 right-10 h-[420px] w-[420px] rounded-full bg-primary/30 blur-3xl" />
         <div className="absolute bottom-0 left-8 h-[320px] w-[320px] rounded-full bg-primary/20 blur-3xl" />
