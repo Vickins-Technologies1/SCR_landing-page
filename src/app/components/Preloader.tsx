@@ -5,19 +5,25 @@ import Image from "next/image";
 
 const Preloader = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    const raf = requestAnimationFrame(() => setIsReady(true));
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 2800);
 
-    return () => clearTimeout(timer);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, []);
 
   if (!isVisible) return null;
 
   return (
     <div
+      data-ready={isReady}
       className="fixed inset-0 z-50 flex items-center justify-center bg-background"
       style={{
         opacity: isVisible ? 1 : 0,
@@ -31,7 +37,7 @@ const Preloader = () => {
         <div className="noise" />
       </div>
 
-      <div className="relative z-10 w-[90%] max-w-xl">
+      <div className="relative z-10 w-[90%] max-w-xl preloader-shell">
         <div className="stage">
           <div className="sheen" />
           <div className="stack stack-one" />
@@ -106,6 +112,14 @@ const Preloader = () => {
           border: 1px solid rgba(30, 58, 138, 0.12);
           box-shadow: 0 40px 100px -70px rgba(30, 58, 138, 0.6);
           padding: 48px 40px;
+          opacity: 0;
+          transform: translateY(12px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        [data-ready="true"] .stage {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .sheen {
@@ -273,6 +287,14 @@ const Preloader = () => {
           .title {
             font-size: 1.35rem;
           }
+        }
+
+        [data-ready="false"] .sheen,
+        [data-ready="false"] .stack,
+        [data-ready="false"] .logo-wrap,
+        [data-ready="false"] .signal-dot,
+        [data-ready="false"] .back-glow {
+          animation-play-state: paused;
         }
       `}</style>
     </div>
