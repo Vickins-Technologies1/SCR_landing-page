@@ -6,7 +6,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "class", // We use manual class via data-theme, but Tailwind needs this for dark: variants
   theme: {
     extend: {
       fontFamily: {

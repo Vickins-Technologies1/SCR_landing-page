@@ -1,158 +1,188 @@
-"use client";
-
-import React from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
-import Navbar from "../components/Navbar";
+import Link from "next/link";
+import { Award, Building2, ShieldCheck, Users } from "lucide-react";
 
 export default function About() {
+  const values = [
+    {
+      title: "Trust & Transparency",
+      desc: "Clear reporting, honest communication, and reliable fee structures.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Local Expertise",
+      desc: "Deep insight into Kenyan markets, tenant expectations, and compliance.",
+      icon: Building2,
+    },
+    {
+      title: "Client-First Service",
+      desc: "Dedicated managers who treat every property like a flagship asset.",
+      icon: Users,
+    },
+  ];
+
   return (
-
-    <div className="min-h-screen bg-background text-foreground">
-    <Navbar />
-      {/* Hero Section - Matching Home page style */}
-      <section className="relative h-[70vh] min-h-[500px] md:h-[80vh] flex items-center justify-center overflow-hidden bg-hero">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2138&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-200 bg-clip-text text-transparent">
-              About Us
-            </span>
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl font-light text-blue-50 max-w-3xl mx-auto opacity-95">
-            Excellence in property management, built on trust, technology, and local expertise.
-          </p>
-        </div>
-      </section>
-
-      {/* Our Story */}
-      <section className="py-16 md:py-24 bg-muted">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16">
-            Our Story
-          </h2>
-
-          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="order-2 lg:order-1">
-              <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
-                Sorana Property Managers Limited, headquartered in <strong>Kerugoya, Kenya</strong>, is a premier property management firm dedicated to delivering seamless rental solutions for residential, commercial, and mixed-use properties.
+    <main className="min-h-screen bg-background text-foreground">
+      <section className="pt-28 pb-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+            <div data-reveal="left">
+              <p className="eyebrow">About Sorana</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4">
+                Premium property stewardship rooted in trust and modern systems.
+              </h1>
+              <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl">
+                Sorana Property Managers Limited, headquartered in Kerugoya, Kenya, delivers strategic management for residential, commercial, and mixed-use properties. We pair meticulous care with technology-driven reporting to protect your investment.
               </p>
-              <p className="text-lg md:text-xl text-foreground/90 leading-relaxed mt-6">
-                We combine professional expertise with innovative technology to ensure reliable returns, hassle-free ownership, and exceptional tenant experiences.
-              </p>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/property.png"
-                  alt="Beautiful managed property in Kenya"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision - Side by side on larger screens */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="text-center md:text-left">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                To simplify property ownership and deliver exceptional rental experiences through dedicated service, cutting-edge technology, and unwavering trust.
-              </p>
-            </div>
-
-            <div className="text-center md:text-left">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">Our Vision</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                To become the most trusted and innovative property management leader across Kenya, setting the highest standards in client care and operational excellence.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Services */}
-      <section className="py-16 md:py-24 bg-muted">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16">
-            Our Services
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {[
-              "Rental Property Marketing & Tenant Acquisition",
-              "Lease Agreement Management",
-              "Tenant Screening & Onboarding",
-              "Rent Collection & Monthly Statements",
-              "Property Maintenance & 24/7 Repair Response",
-              "Regular Property Inspections",
-              "Owner Reporting & Updates",
-            ].map((service, i) => (
-              <div
-                key={i}
-                className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-3 transition-all duration-500 border border-border/50 text-center"
-              >
-                <p className="text-base md:text-lg font-medium text-foreground">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12">
-            Get in Touch
-          </h2>
-
-          <div className="max-w-2xl mx-auto bg-card rounded-2xl shadow-xl p-8 md:p-10 border border-border/50">
-            <ul className="space-y-6 text-lg md:text-xl">
-              <li>
-                <strong className="text-primary">Office Location:</strong>
-                <br />
-                Kerugoya, Kenya
-              </li>
-              <li>
-                <strong className="text-primary">Phone:</strong>
-                <br />
-                <a href="tel:+254117649850" className="hover:text-primary transition-colors">
-                  +254 117 649-850
-                </a>{" "}
-                or{" "}
-                <a href="tel:+254702036837" className="hover:text-primary transition-colors">
-                  +254 702 036-837
-                </a>
-              </li>
-              <li>
-                <strong className="text-primary">Email:</strong>
-                <br />
-                <a
-                  href="mailto:soranapropertymanagers@gmail.com"
-                  className="hover:text-primary transition-colors break-all"
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/contact-us"
+                  className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm inline-flex items-center gap-2"
                 >
-                  soranapropertymanagers@gmail.com
-                </a>
-              </li>
-            </ul>
+                  Schedule a consultation
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="border border-border/60 text-foreground font-semibold py-3 px-6 rounded-full text-sm inline-flex items-center gap-2"
+                >
+                  See our process
+                </Link>
+              </div>
+            </div>
+
+            <div data-reveal="right" className="relative">
+              <div className="surface-card rounded-3xl overflow-hidden">
+                <div className="relative h-72 md:h-96">
+                  <Image src="/property.png" alt="Managed property" fill className="object-cover" priority />
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -left-6 glass-panel rounded-2xl p-4 border border-white/60">
+                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Based in</p>
+                <p className="text-lg font-semibold">Kerugoya, Kenya</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </div>
+
+      <section className="py-16 md:py-24 bg-muted/40">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+            <div data-reveal="left">
+              <p className="eyebrow">Our Story</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">Built on reliable operations and owner confidence.</h2>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground">
+                We started with a commitment to simplify ownership for busy investors. Today, our team blends premium customer care with modern management systems to deliver consistent, transparent performance for every property we manage.
+              </p>
+            </div>
+            <div data-reveal="right" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { label: "Properties Managed", value: "25+" },
+                { label: "Rent Collected", value: "KSH 1M+" },
+                { label: "Owner Retention", value: "98%" },
+                { label: "Response Time", value: "24/7" },
+              ].map((item) => (
+                <div key={item.label} className="surface-card rounded-2xl p-5">
+                  <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{item.label}</p>
+                  <p className="mt-3 text-2xl font-semibold text-foreground">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="surface-card rounded-3xl p-7" data-reveal="left">
+              <p className="eyebrow">Mission</p>
+              <h3 className="text-xl md:text-2xl font-semibold mt-3">To simplify ownership and elevate tenant experience.</h3>
+              <p className="text-sm md:text-base text-muted-foreground mt-4">
+                We deliver dependable rental performance through attentive service, smart technology, and uncompromising transparency.
+              </p>
+            </div>
+            <div className="surface-card rounded-3xl p-7" data-reveal="right">
+              <p className="eyebrow">Vision</p>
+              <h3 className="text-xl md:text-2xl font-semibold mt-3">To be Kenya's most trusted property management partner.</h3>
+              <p className="text-sm md:text-base text-muted-foreground mt-4">
+                We set premium standards for operational excellence, client care, and market-leading innovation.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <div
+                  key={value.title}
+                  data-reveal
+                  style={{ "--reveal-delay": `${80 + index * 80}ms` } as CSSProperties}
+                  className="surface-card rounded-3xl p-6"
+                >
+                  <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-semibold mb-2">{value.title}</h4>
+                  <p className="text-sm text-muted-foreground">{value.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-muted/40">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+            <div data-reveal="left">
+              <p className="eyebrow">Service Coverage</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">A full-service portfolio partner.</h2>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground">
+                From tenant acquisition to maintenance oversight and financial reporting, we handle every stage so you can focus on growth.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                {[
+                  "Rental marketing & tenant acquisition",
+                  "Lease administration & compliance",
+                  "Maintenance coordination & inspections",
+                  "Financial reporting & owner updates",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <Award className="w-4 h-4 text-primary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div data-reveal="right" className="glass-panel rounded-3xl p-8 border border-white/60">
+              <h3 className="text-xl font-semibold">Connect with our team</h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Ready for a premium property management partner? Let us build a tailored strategy for your assets.
+              </p>
+              <div className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <p>
+                  <strong className="text-foreground">Office:</strong> Kerugoya, Kenya
+                </p>
+                <p>
+                  <strong className="text-foreground">Phone:</strong> +254 117 649 850 / +254 702 036 837
+                </p>
+                <p>
+                  <strong className="text-foreground">Email:</strong> soranapropertymanagers@gmail.com
+                </p>
+              </div>
+              <Link
+                href="/contact-us"
+                className="mt-6 inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm"
+              >
+                Speak with us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

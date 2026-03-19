@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css"; 
-import { ThemeProvider } from "./components/ThemeProvider";
+import { Cormorant_Garamond, JetBrains_Mono, Sora } from "next/font/google";
+import "./globals.css";
 import Preloader from "./components/Preloader";
+import ScrollReveal from "./components/ScrollReveal";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -27,19 +37,19 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${sora.variable} ${cormorant.variable} ${jetbrains.variable}`}>
       <body className="antialiased">
-        <ThemeProvider>
-          <Preloader />
+        <Preloader />
+        <ScrollReveal />
+        <Navbar />
         {children}
-        </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );
