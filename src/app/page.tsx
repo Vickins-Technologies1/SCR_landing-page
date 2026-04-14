@@ -88,7 +88,7 @@ export default function Home() {
     alert("Thank you for subscribing! Stay tuned for property insights.");
   };
 
-  const rentCollected = useCounter(isStatsVisible ? 1000000 : 0, 2500);
+  const rentCollected = useCounter(isStatsVisible ? 4542249 : 0, 2500);
   const propertiesManaged = useCounter(isStatsVisible ? 25 : 0, 2200);
   const happyClients = useCounter(isStatsVisible ? 20 : 0, 2000);
   const onTimePayments = useCounter(isStatsVisible ? 99 : 0, 1800);
@@ -132,6 +132,12 @@ export default function Home() {
       span: "lg:col-span-2",
     },
     {
+      title: "Airbnb Management",
+      desc: "Full-support Airbnb management covering all core hosting services: listing setup, pricing & availability, booking requests, guest messaging, onsite support, cleaning & maintenance, and professional photography.",
+      icon: ClipboardCheck,
+      span: "lg:col-span-3",
+    },
+    {
       title: "Smart Portfolio Control",
       desc: "Unified dashboard with vacancy tracking, inspection logs, and financial snapshots.",
       icon: Monitor,
@@ -143,6 +149,15 @@ export default function Home() {
       icon: Building2,
       span: "lg:col-span-2",
     },
+  ];
+
+  const airbnbFeatures = [
+    "Listing setup and optimization",
+    "Pricing and availability strategy",
+    "Booking request management",
+    "Guest messaging and support",
+    "Cleaning, turnovers, and inspections",
+    "Professional photography",
   ];
 
   const testimonials = [
@@ -182,7 +197,7 @@ export default function Home() {
                 The sleek, transparent way to manage rental assets in Kenya.
               </h1>
               <p className="mt-5 text-sm sm:text-base md:text-lg text-white/80 max-w-xl">
-                Sorana Property Managers delivers owner-focused performance, tenant care, and operational clarity through a modern, concierge-level approach.
+                Sorana Property Managers delivers owner-focused performance, tenant care, and operational clarity, including full-service Airbnb management.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -316,6 +331,40 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-muted/40">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
+            <div>
+              <p className="eyebrow">Airbnb Management</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">All-in support for short-stay success.</h2>
+              <p className="text-sm md:text-base text-muted-foreground mt-4 max-w-2xl">
+                We run the full Airbnb lifecycle so your short-term rental performs consistently while you stay hands-off.
+              </p>
+            </div>
+            <Link
+              href="/contact-us"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+            >
+              Talk to an Airbnb specialist
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {airbnbFeatures.map((feature, index) => (
+              <div
+                key={feature}
+                data-reveal
+                style={{ "--reveal-delay": `${80 + index * 60}ms` } as React.CSSProperties}
+                className="surface-card rounded-3xl p-6 text-sm text-muted-foreground"
+              >
+                {feature}
               </div>
             ))}
           </div>

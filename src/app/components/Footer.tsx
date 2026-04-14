@@ -14,10 +14,10 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               {[
-                { href: "https://shorturl.at/1QsHn", label: "Facebook", icon: FaFacebookF },
+                { href: "https://www.facebook.com/share/18Fx8TFFCZ/", label: "Facebook", icon: FaFacebookF },
                 { href: "https://tinyurl.com/2p4hkmsv", label: "X (Twitter)", icon: FaXTwitter },
-                { href: "https://instagram.com", label: "Instagram", icon: FaInstagram },
-                { href: "https://shorturl.at/DYjcZ", label: "TikTok", icon: FaTiktok },
+                { href: "https://www.instagram.com/sorana_2026?igsh=ZzdpZXpneHBpa3Z1", label: "Instagram", icon: FaInstagram },
+                { href: "https://www.tiktok.com/@soranapropertymanagers?_r=1&_t=ZS-95UtLwUR8Dw", label: "TikTok", icon: FaTiktok },
               ].map((item) => (
                 <a
                   key={item.label}
