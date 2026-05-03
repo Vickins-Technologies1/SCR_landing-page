@@ -23,8 +23,8 @@ export default function Navbar() {
   const navLinks = [
     { href: "/about", label: "About", icon: Info },
     {
-      href: "https://app.soranapropertymanagers.com/property-listings",
-      label: "Properties",
+      href: "https://app.soranapropertymanagers.com/market-place",
+      label: "Market Place",
       icon: Building2,
       external: true,
     },
