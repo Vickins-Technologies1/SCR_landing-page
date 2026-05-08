@@ -71,7 +71,7 @@ export default function Footer() {
           <p>
             Developed by{" "}
             <a
-              href="https://vickins-technologies.vercel.app/"
+              href="https://www.vickinstechnologies.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary font-semibold hover:underline"
