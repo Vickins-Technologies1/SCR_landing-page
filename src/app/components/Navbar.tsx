@@ -15,16 +15,23 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { site } from "@/lib/site";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const navLinks = [
-    { href: "/about", label: "About", icon: Info },
     {
-      href: "https://app.soranapropertymanagers.com/market-place",
+      href: "/about",
+      label: "About",
+      icon: Info,
+    },
+    {
+      href: site.portal.marketplace,
       label: "Market Place",
       icon: Building2,
       external: true,
@@ -37,15 +44,15 @@ export default function Navbar() {
 
   const actions = [
     {
-      href: "https://app.soranapropertymanagers.com/",
-      label: "Sign In",
+      href: site.portal.signIn,
+      label: "Owner Portal",
       icon: LogIn,
       external: true,
       variant: "ghost",
     },
     {
-      href: "https://app.soranapropertymanagers.com/sign-up",
-      label: "Sign Up",
+      href: site.portal.signUp,
+      label: "Get Started",
       icon: UserPlus,
       external: true,
       variant: "primary",
@@ -91,7 +98,9 @@ export default function Navbar() {
                   <Link
                     key={label}
                     href={href}
-                    className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground transition hover:text-foreground"
+                    className={`px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition hover:text-foreground ${
+                      pathname === href ? "text-foreground" : "text-muted-foreground"
+                    }`}
                   >
                     {label}
                   </Link>
@@ -197,7 +206,9 @@ export default function Navbar() {
                   key={label}
                   href={href}
                   onClick={closeMobileMenu}
-                  className="w-full flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold tracking-wide text-foreground hover:bg-muted/70 transition"
+                  className={`w-full flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold tracking-wide transition hover:bg-muted/70 ${
+                    pathname === href ? "text-primary" : "text-foreground"
+                  }`}
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                     <Icon size={20} className="text-primary" />

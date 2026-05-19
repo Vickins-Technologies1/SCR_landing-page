@@ -1,4 +1,5 @@
 import { FaFacebookF, FaXTwitter, FaInstagram, FaTiktok } from "react-icons/fa6";
+import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -12,12 +13,19 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground">
               Caring for your property, protecting your investment with a premium, transparent, and tech-forward experience.
             </p>
+            <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+              {["Transparent reporting", "Vetted vendors", "Tenant screening", "Owner portal access"].map((t) => (
+                <span key={t} className="rounded-full border border-border/60 bg-background/60 px-3 py-1">
+                  {t}
+                </span>
+              ))}
+            </div>
             <div className="flex items-center gap-3">
               {[
-                { href: "https://www.facebook.com/share/18Fx8TFFCZ/", label: "Facebook", icon: FaFacebookF },
-                { href: "https://tinyurl.com/2p4hkmsv", label: "X (Twitter)", icon: FaXTwitter },
-                { href: "https://www.instagram.com/sorana_2026?igsh=ZzdpZXpneHBpa3Z1", label: "Instagram", icon: FaInstagram },
-                { href: "https://www.tiktok.com/@soranapropertymanagers?_r=1&_t=ZS-95UtLwUR8Dw", label: "TikTok", icon: FaTiktok },
+                { href: site.social.facebook, label: "Facebook", icon: FaFacebookF },
+                { href: site.social.x, label: "X (Twitter)", icon: FaXTwitter },
+                { href: site.social.instagram, label: "Instagram", icon: FaInstagram },
+                { href: site.social.tiktok, label: "TikTok", icon: FaTiktok },
               ].map((item) => (
                 <a
                   key={item.label}
@@ -40,6 +48,14 @@ export default function Footer() {
               <a href="/how-it-works" className="block hover:text-primary transition-colors">How It Works</a>
               <a href="/pricing" className="block hover:text-primary transition-colors">Pricing</a>
               <a href="/contact-us" className="block hover:text-primary transition-colors">Contact</a>
+              <a
+                href={site.portal.marketplace}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-primary transition-colors"
+              >
+                Market Place
+              </a>
             </div>
           </div>
 
@@ -56,11 +72,17 @@ export default function Footer() {
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>Kerugoya, Kenya</p>
-              <a href="tel:+254117649850" className="block hover:text-primary transition-colors">+254 117 649 850</a>
-              <a href="tel:+254702036837" className="block hover:text-primary transition-colors">+254 702 036 837</a>
-              <a href="mailto:soranapropertymanagers@gmail.com" className="block hover:text-primary transition-colors break-all">
-                soranapropertymanagers@gmail.com
+              <p>{site.contact.address}</p>
+              {site.contact.phones.map((p) => (
+                <a key={p} href={`tel:${p}`} className="block hover:text-primary transition-colors">
+                  {p.replace("+254", "+254 ").replace(/(\d{3})(\d{3})(\d{3})$/, "$1 $2 $3")}
+                </a>
+              ))}
+              <a
+                href={`mailto:${site.contact.email}`}
+                className="block hover:text-primary transition-colors break-all"
+              >
+                {site.contact.email}
               </a>
             </div>
           </div>

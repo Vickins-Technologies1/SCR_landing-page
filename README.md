@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sorana Property Managers Website (Next.js App Router)
+
+Ultra‑premium, mobile‑first marketing site for Sorana Property Managers Limited.
+
+## Tech Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Framer Motion (subtle premium animations)
+- Embla Carousel (testimonials)
+- React Hook Form + Zod (contact form validation)
+
+## Brand Colors
+
+This project preserves Sorana’s existing palette via CSS variables in `src/app/globals.css`.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables (Optional)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXT_PUBLIC_ANDROID_APK_URL` — override APK download URL (defaults to `https://www.soranapropertymanagers.com/downloads/sorana.apk`)
+- `NEXT_PUBLIC_ANDROID_APK_SHA256` — override APK SHA256 shown on `/download-app`
 
-## Learn More
+## Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Site Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Central config (URLs, contacts, social links, portal + Marketplace destinations) lives in `src/lib/site.ts`.
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The navigation “Market Place” link intentionally points to Sorana’s external Marketplace URL (no internal Marketplace page).
+- SEO: per‑page metadata, Open Graph/Twitter images, `robots.txt`, `sitemap.xml`, plus JSON‑LD LocalBusiness schema in `src/app/layout.tsx`.
