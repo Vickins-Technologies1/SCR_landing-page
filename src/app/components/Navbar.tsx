@@ -17,6 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -109,6 +110,7 @@ export default function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center gap-2">
+              <ThemeToggle className="p-2.5 rounded-full bg-muted/60 hover:bg-muted transition text-muted-foreground hover:text-foreground" />
               {actions.map(({ href, label, external, variant, icon: Icon }) =>
                 external ? (
                   <button
@@ -140,13 +142,16 @@ export default function Navbar() {
               )}
             </div>
 
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2 rounded-full bg-muted/60 hover:bg-muted transition"
-              aria-label="Open menu"
-            >
-              <Menu size={22} strokeWidth={2.4} />
-            </button>
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle className="p-2 rounded-full bg-muted/60 hover:bg-muted transition text-muted-foreground hover:text-foreground" />
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="p-2 rounded-full bg-muted/60 hover:bg-muted transition"
+                aria-label="Open menu"
+              >
+                <Menu size={22} strokeWidth={2.4} />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -179,13 +184,16 @@ export default function Navbar() {
                 <p className="text-sm font-semibold">Property Managers</p>
               </div>
             </Link>
-            <button
-              onClick={closeMobileMenu}
-              className="p-2 rounded-full hover:bg-muted transition"
-              aria-label="Close menu"
-            >
-              <X size={22} className="text-foreground" />
-            </button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle className="p-2 rounded-full bg-muted/60 hover:bg-muted transition text-muted-foreground hover:text-foreground" />
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 rounded-full hover:bg-muted transition"
+                aria-label="Close menu"
+              >
+                <X size={22} className="text-foreground" />
+              </button>
+            </div>
           </div>
 
           <nav className="flex-1 space-y-2">

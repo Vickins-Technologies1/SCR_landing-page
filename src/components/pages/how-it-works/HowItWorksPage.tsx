@@ -89,16 +89,16 @@ export function HowItWorksPage() {
             </Reveal>
 
             <Reveal delay={0.06}>
-              <div className="glass-panel rounded-3xl p-6 border border-white/60">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/70">What you get</p>
-                <div className="mt-4 space-y-3 text-sm text-white/80">
+              <div className="rounded-3xl p-6 border border-white/20 bg-black/25 backdrop-blur-xl shadow-[0_26px_70px_-50px_rgba(0,0,0,0.7)]">
+                <p className="text-xs uppercase tracking-[0.3em] text-white/75">What you get</p>
+                <div className="mt-4 space-y-3 text-sm text-white/90">
                   {[
                     "Clear onboarding checklist",
                     "Dedicated account manager",
                     "Vendor governance and documentation",
                     "Monthly owner reporting",
                   ].map((item) => (
-                    <div key={item} className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3">
+                    <div key={item} className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3">
                       {item}
                     </div>
                   ))}

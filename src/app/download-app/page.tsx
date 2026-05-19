@@ -19,11 +19,24 @@ export const metadata: Metadata = {
 };
 
 const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/sorana.apk`;
+const apkVersion = process.env.NEXT_PUBLIC_ANDROID_APK_VERSION ?? null;
 const apkSha256 =
   process.env.NEXT_PUBLIC_ANDROID_APK_SHA256 ??
   "4BB0DCAC2320747B46D480A75532E7BB094888418E3318CD313A52B5FA07B661";
 
 export default function Page() {
+  const resolvedApkUrl = new URL(apkUrl, site.url);
+  const siteOrigin = new URL(site.url).origin;
+  const isSameOriginApk = resolvedApkUrl.origin === siteOrigin;
+
+  // Only cache-bust same-origin, non-signed URLs (avoid breaking signed URLs that rely on query params).
+  if (apkVersion && isSameOriginApk && !apkUrl.includes("?")) {
+    resolvedApkUrl.searchParams.set("v", apkVersion);
+  }
+
+  const downloadHref = isSameOriginApk ? `${resolvedApkUrl.pathname}${resolvedApkUrl.search}` : resolvedApkUrl.toString();
+  const downloadName = apkVersion ? `sorana-owner-v${apkVersion}.apk` : "sorana-owner.apk";
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="pt-28 pb-16">
@@ -37,9 +50,16 @@ export default function Page() {
                 updates before the Play Store release.
               </p>
 
+              {apkVersion ? (
+                <p className="mt-4 text-xs md:text-sm text-muted-foreground">
+                  Current version: <span className="font-semibold text-foreground">v{apkVersion}</span>
+                </p>
+              ) : null}
+
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
                 <a
-                  href={apkUrl}
+                  href={downloadHref}
+                  download={downloadName}
                   className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm"
                 >
                   <Download className="h-4 w-4" />

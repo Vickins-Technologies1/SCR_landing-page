@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { site } from "@/lib/site";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 export const metadata: Metadata = {
   title: site.name,
@@ -45,8 +46,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <script
           type="application/ld+json"
           // LocalBusiness schema for SEO rich results
@@ -73,6 +75,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <FloatingWhatsApp />
+        </ThemeProvider>
       </body>
     </html>
   );

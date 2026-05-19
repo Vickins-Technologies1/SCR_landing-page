@@ -123,16 +123,16 @@ export function HomePage() {
             </Reveal>
 
             <Reveal delay={0.08} y={20}>
-              <div className="glass-panel rounded-3xl p-6 md:p-7 border border-white/60">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/70">Why owners choose Sorana</p>
-                <div className="mt-5 grid grid-cols-1 gap-3 text-sm text-white/80">
+              <div className="rounded-3xl p-6 md:p-7 border border-white/20 bg-black/25 backdrop-blur-xl shadow-[0_26px_70px_-50px_rgba(0,0,0,0.7)]">
+                <p className="text-xs uppercase tracking-[0.3em] text-white/75">Why owners choose Sorana</p>
+                <div className="mt-5 grid grid-cols-1 gap-3 text-sm text-white/90">
                   {[
                     "Monthly reporting that’s easy to understand",
                     "Vetted vendors and maintenance governance",
                     "Tenant screening and proactive issue resolution",
                     "Digital owner access via secure portal",
                   ].map((item) => (
-                    <div key={item} className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur">
+                    <div key={item} className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3">
                       {item}
                     </div>
                   ))}
