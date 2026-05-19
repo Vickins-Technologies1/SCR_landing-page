@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   },
 };
 
-const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/sorana1.01.apk`;
+const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/SoranaPropertyManagers-v1.0-code1-release.apk`;
 const apkVersion = process.env.NEXT_PUBLIC_ANDROID_APK_VERSION ?? null;
 const apkSha256 =
   process.env.NEXT_PUBLIC_ANDROID_APK_SHA256 ??
-  "4BB0DCAC2320747B46D480A75532E7BB094888418E3318CD313A52B5FA07B661";
+  "1EED077BFF675920ADE73AE96BD47D75B10B2710926BB150660DC45635A4636F";
 
 export default function Page() {
   const resolvedApkUrl = new URL(apkUrl, site.url);
@@ -72,6 +72,18 @@ export default function Page() {
                   Need help installing?
                 </Link>
               </div>
+
+              <p className="mt-4 text-xs text-muted-foreground">
+                By downloading, you agree to our{" "}
+                <Link href="/terms" className="text-primary font-semibold hover:underline">
+                  Terms
+                </Link>{" "}
+                and{" "}
+                <Link href="/privacy" className="text-primary font-semibold hover:underline">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
 
               <div className="mt-8 surface-card rounded-3xl p-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Security check (optional)</p>

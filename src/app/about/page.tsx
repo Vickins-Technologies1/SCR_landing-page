@@ -127,7 +127,7 @@ export default function About() {
             </Reveal>
             <Reveal className="surface-card rounded-3xl p-7" delay={0.06}>
               <p className="eyebrow">Vision</p>
-              <h3 className="text-xl md:text-2xl font-semibold mt-3">To be Kenya's most trusted property management partner.</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mt-3">To be Kenya&apos;s most trusted property management partner.</h3>
               <p className="text-sm md:text-base text-muted-foreground mt-4">
                 We set premium standards for operational excellence, client care, and market-leading innovation.
               </p>

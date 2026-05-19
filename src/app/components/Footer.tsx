@@ -48,6 +48,8 @@ export default function Footer() {
               <a href="/how-it-works" className="block hover:text-primary transition-colors">How It Works</a>
               <a href="/pricing" className="block hover:text-primary transition-colors">Pricing</a>
               <a href="/contact-us" className="block hover:text-primary transition-colors">Contact</a>
+              <a href="/privacy" className="block hover:text-primary transition-colors">Privacy Policy</a>
+              <a href="/terms" className="block hover:text-primary transition-colors">Terms of Service</a>
               <a
                 href={site.portal.marketplace}
                 target="_blank"
