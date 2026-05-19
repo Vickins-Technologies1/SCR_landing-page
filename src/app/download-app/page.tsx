@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/sorana-v1.apk`;
+const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/SORANA_V1.0.0.apk`;
 const apkVersion = process.env.NEXT_PUBLIC_ANDROID_APK_VERSION ?? null;
 const apkSha256 =
   process.env.NEXT_PUBLIC_ANDROID_APK_SHA256 ??
