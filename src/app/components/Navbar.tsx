@@ -9,6 +9,7 @@ import {
   Info,
   Mail,
   Wallet,
+  Download,
   LogIn,
   UserPlus,
 } from "lucide-react";
@@ -30,6 +31,7 @@ export default function Navbar() {
     },
     { href: "/how-it-works", label: "How It Works", icon: Compass },
     { href: "/pricing", label: "Pricing", icon: Wallet },
+    { href: "/download-app", label: "Download App", icon: Download },
     { href: "/contact-us", label: "Contact", icon: Mail },
   ];
 
