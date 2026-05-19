@@ -78,14 +78,14 @@ export function HomePage() {
       <section className="relative pt-28 pb-16 md:pb-20">
         <div className="absolute inset-0 -z-10">
           <Image src={heroImage} alt="Premium Kenyan property" fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/85 via-foreground/65 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/85 via-[#1E3A8A]/65 to-background" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-end">
             <Reveal>
               <p className="eyebrow text-white/80">Premium Property Management • Kenya</p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold mt-4 text-white leading-[1.05]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4 text-white leading-[1.08]">
                 Ultra‑premium stewardship for owners who value clarity, care, and performance.
               </h1>
               <p className="mt-5 text-sm md:text-base text-white/80 max-w-2xl">
@@ -346,4 +346,3 @@ export function HomePage() {
     </main>
   );
 }
-

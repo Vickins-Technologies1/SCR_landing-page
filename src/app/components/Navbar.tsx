@@ -84,13 +84,13 @@ export default function Navbar() {
               </div>
             </Link>
 
-            <div className="hidden lg:flex items-center gap-1 rounded-full bg-muted/60 px-2 py-2">
+            <div className="hidden md:flex items-center gap-1 rounded-full bg-muted/50 px-1.5 py-1.5">
               {navLinks.map(({ href, label, external }) =>
                 external ? (
                   <button
                     key={label}
                     onClick={() => handleExternalClick(href)}
-                    className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground transition hover:text-foreground"
+                    className="rounded-full px-3 py-2 text-[11px] lg:text-xs font-semibold text-muted-foreground transition hover:text-foreground hover:bg-background/60"
                   >
                     {label}
                   </button>
@@ -98,7 +98,7 @@ export default function Navbar() {
                   <Link
                     key={label}
                     href={href}
-                    className={`px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition hover:text-foreground ${
+                    className={`rounded-full px-3 py-2 text-[11px] lg:text-xs font-semibold transition hover:text-foreground hover:bg-background/60 ${
                       pathname === href ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
@@ -108,13 +108,13 @@ export default function Navbar() {
               )}
             </div>
 
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-2">
               {actions.map(({ href, label, external, variant, icon: Icon }) =>
                 external ? (
                   <button
                     key={label}
                     onClick={() => handleExternalClick(href)}
-                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-all ${
+                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-[11px] lg:text-xs font-semibold transition-all ${
                       variant === "primary"
                         ? "bg-primary text-primary-foreground shadow-[0_16px_30px_-18px_rgba(66,199,117,0.6)] hover:bg-primary-hover"
                         : "text-muted-foreground hover:text-foreground"
@@ -127,7 +127,7 @@ export default function Navbar() {
                   <Link
                     key={label}
                     href={href}
-                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-all ${
+                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-[11px] lg:text-xs font-semibold transition-all ${
                       variant === "primary"
                         ? "bg-primary text-primary-foreground shadow-[0_16px_30px_-18px_rgba(66,199,117,0.6)] hover:bg-primary-hover"
                         : "text-muted-foreground hover:text-foreground"
@@ -142,7 +142,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 rounded-full bg-muted/60 hover:bg-muted transition"
+              className="md:hidden p-2 rounded-full bg-muted/60 hover:bg-muted transition"
               aria-label="Open menu"
             >
               <Menu size={22} strokeWidth={2.4} />
@@ -153,13 +153,13 @@ export default function Navbar() {
 
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/35 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/35 backdrop-blur-sm z-40 md:hidden"
           onClick={closeMobileMenu}
         />
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 w-80 bg-background/95 backdrop-blur-xl shadow-[0_25px_70px_-40px_rgba(30,58,138,0.65)] border-r border-border z-50 lg:hidden rounded-r-3xl transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`fixed inset-y-0 left-0 w-80 bg-background/95 backdrop-blur-xl shadow-[0_25px_70px_-40px_rgba(30,58,138,0.65)] border-r border-border z-50 md:hidden rounded-r-3xl transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isMobileMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
         }`}
       >

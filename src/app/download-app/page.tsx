@@ -31,7 +31,7 @@ export default function Page() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
             <Reveal>
               <p className="eyebrow">Download</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4">Get the Android app</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Get the Android app</h1>
               <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-2xl">
                 Download the latest Android APK and install it on your phone. This is the fastest way to access owner
                 updates before the Play Store release.
@@ -102,4 +102,3 @@ export default function Page() {
     </main>
   );
 }
-

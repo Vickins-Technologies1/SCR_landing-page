@@ -72,7 +72,7 @@ export function PricingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
             <Reveal>
               <p className="eyebrow">Pricing</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
                 Transparent fees—built for trust and performance.
               </h1>
               <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl">
@@ -278,4 +278,3 @@ export function PricingPage() {
     </main>
   );
 }
-

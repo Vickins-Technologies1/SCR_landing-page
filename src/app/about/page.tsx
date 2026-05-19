@@ -45,7 +45,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <Reveal>
               <p className="eyebrow">About Sorana</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
                 Premium property stewardship rooted in trust and modern systems.
               </h1>
               <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl">
