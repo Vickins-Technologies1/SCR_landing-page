@@ -52,12 +52,12 @@ export function HowItWorksPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative pt-28 pb-16">
-        <div className="absolute inset-0 -z-10">
+      <section className="relative isolate overflow-hidden pt-28 pb-16">
+        <div className="absolute inset-0 z-0">
           <Image src={heroImage} alt="Property operations" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/80 via-[#1E3A8A]/55 to-background" />
         </div>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-12 items-end">
             <Reveal>
               <p className="eyebrow text-white/80">How It Works</p>
