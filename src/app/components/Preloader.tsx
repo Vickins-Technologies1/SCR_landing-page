@@ -1,35 +1,45 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const Preloader = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const raf = requestAnimationFrame(() => setIsReady(true));
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 2800);
+    const EXIT_MS = 900;
+    const HOLD_MS = 1900;
+
+    let raf2: number | null = null;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setIsReady(true));
+    });
+
+    const exitTimer = window.setTimeout(() => {
+      setIsOpen(false);
+    }, HOLD_MS);
+
+    const unmountTimer = window.setTimeout(() => {
+      setIsMounted(false);
+    }, HOLD_MS + EXIT_MS + 60);
 
     return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(timer);
+      cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(unmountTimer);
     };
   }, []);
 
-  if (!isVisible) return null;
+  if (!isMounted) return null;
 
   return (
     <div
       data-ready={isReady}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 0.9s ease-out 0.3s",
-        pointerEvents: isVisible ? "auto" : "none",
-      }}
+      data-open={isOpen}
+      className="preloader-root fixed inset-0 z-50 flex items-center justify-center bg-background"
     >
       <div className="absolute inset-0 overflow-hidden">
         <div className="back-glow back-glow-one" />
@@ -72,6 +82,32 @@ const Preloader = () => {
       </div>
 
       <style jsx>{`
+        :global(html) {
+          background: var(--background);
+        }
+
+        .preloader-root {
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: opacity;
+        }
+
+        .preloader-root[data-open="true"] {
+          opacity: 1;
+          pointer-events: auto;
+          transition-duration: 520ms;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .preloader-root {
+            transition: none;
+          }
+          .stage {
+            transition: none;
+          }
+        }
+
         .back-glow {
           position: absolute;
           border-radius: 999px;
@@ -113,13 +149,16 @@ const Preloader = () => {
           box-shadow: 0 40px 100px -70px rgba(30, 58, 138, 0.6);
           padding: 48px 40px;
           opacity: 0;
-          transform: translateY(12px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
+          transform: translateY(14px) scale(0.985);
+          transition:
+            opacity 720ms cubic-bezier(0.16, 1, 0.3, 1),
+            transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: opacity, transform;
         }
 
         [data-ready="true"] .stage {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) scale(1);
         }
 
         .sheen {
