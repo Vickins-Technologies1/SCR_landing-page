@@ -88,6 +88,25 @@ export default function Page() {
                 </Link>
               </div>
 
+              <div className="mt-4 flex flex-col sm:flex-row gap-3 sm:items-center">
+                <button
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center rounded-full border border-border/70 bg-muted/40 px-6 py-3 text-sm font-semibold text-muted-foreground cursor-not-allowed"
+                >
+                  Google Play (Coming soon)
+                </button>
+                <button
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center rounded-full border border-border/70 bg-muted/40 px-6 py-3 text-sm font-semibold text-muted-foreground cursor-not-allowed"
+                >
+                  Apple App Store (Coming soon)
+                </button>
+              </div>
+
               <p className="mt-4 text-xs text-muted-foreground">
                 By downloading, you agree to our{" "}
                 <Link href="/terms" className="text-primary font-semibold hover:underline">
