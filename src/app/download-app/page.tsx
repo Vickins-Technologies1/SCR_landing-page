@@ -18,11 +18,26 @@ export const metadata: Metadata = {
   },
 };
 
-const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/SORANA_V1.0.0.apk`;
-const apkVersion = process.env.NEXT_PUBLIC_ANDROID_APK_VERSION ?? null;
+const apkUrl = process.env.NEXT_PUBLIC_ANDROID_APK_URL ?? `${site.url}/downloads/SORANA_V1.0.1.apk`;
+const apkVersion = process.env.NEXT_PUBLIC_ANDROID_APK_VERSION ?? "1.0.1";
 const apkSha256 =
   process.env.NEXT_PUBLIC_ANDROID_APK_SHA256 ??
-  "1EED077BFF675920ADE73AE96BD47D75B10B2710926BB150660DC45635A4636F";
+  "DC5C8D36B7DDD254A55BA55E6142BE16BA71DBFE2ED56336B08E053634EAEABB";
+
+const availableApks = [
+  {
+    version: "1.0.1",
+    href: "/downloads/SORANA_V1.0.1.apk",
+    sha256: "DC5C8D36B7DDD254A55BA55E6142BE16BA71DBFE2ED56336B08E053634EAEABB",
+    label: "Latest",
+  },
+  {
+    version: "1.0.0",
+    href: "/downloads/SORANA_V1.0.0.apk",
+    sha256: "DF59F86E1A57B2A972CF264B490B64AAFF55DC62CE0A3221A4EDD28A71891343",
+    label: "Previous",
+  },
+] as const;
 
 export default function Page() {
   const resolvedApkUrl = new URL(apkUrl, site.url);
@@ -91,6 +106,37 @@ export default function Page() {
                   If you want to verify the file after download, compare this SHA256 hash:
                 </p>
                 <p className="mt-3 font-mono text-xs sm:text-sm break-all text-foreground">{apkSha256}</p>
+              </div>
+
+              <div className="mt-6 surface-card rounded-3xl p-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Available versions</p>
+                <ul className="mt-4 space-y-4">
+                  {availableApks.map((apk) => (
+                    <li key={apk.href} className="rounded-2xl border border-border/60 bg-muted/30 p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">
+                            v{apk.version}{" "}
+                            <span className="ml-2 rounded-full border border-border bg-background px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                              {apk.label}
+                            </span>
+                          </p>
+                          <p className="mt-2 font-mono text-[11px] sm:text-xs break-all text-muted-foreground">
+                            SHA256: {apk.sha256}
+                          </p>
+                        </div>
+                        <a
+                          href={apk.href}
+                          download
+                          className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover px-5 py-2.5 text-xs font-semibold text-primary-foreground"
+                        >
+                          <Download className="h-4 w-4" />
+                          Download
+                        </a>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
 
