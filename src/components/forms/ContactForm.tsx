@@ -8,9 +8,15 @@ import { z } from "zod";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your full name."),
-  email: z.string().email("Please enter a valid email."),
+  email: z
+    .string()
+    .trim()
+    .optional()
+    .refine((v) => !v || z.string().email().safeParse(v).success, "Please enter a valid email."),
   phone: z.string().optional(),
+  subject: z.string().trim().optional(),
   message: z.string().min(12, "Tell us a bit more so we can respond well."),
+  website: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -21,6 +27,7 @@ type Props = {
 
 export function ContactForm({ onSubmitted }: Props) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -28,12 +35,61 @@ export function ContactForm({ onSubmitted }: Props) {
     reset,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", phone: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", subject: "", message: "", website: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
     setSubmitted(false);
-    await new Promise((r) => setTimeout(r, 900));
+    setSubmitError(null);
+
+    if (values.website?.trim()) {
+      reset();
+      setSubmitted(true);
+      return;
+    }
+
+    const contactApiUrl =
+      process.env.NEXT_PUBLIC_CONTACT_API_URL ?? "https://app.soranapropertymanagers.com/api/public/contact";
+
+    const payload = {
+      name: values.name.trim(),
+      email: values.email?.trim() || undefined,
+      phone: values.phone?.trim() || undefined,
+      subject: values.subject?.trim() || undefined,
+      message: values.message.trim(),
+      website: "",
+    };
+
+    let res: Response;
+    try {
+      res = await fetch(contactApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      setSubmitError("Could not reach the contact service. Please try again.");
+      return;
+    }
+
+    if (!res.ok) {
+      const maybeJson = await res.json().catch(() => null);
+      const message =
+        (maybeJson && typeof maybeJson === "object" && "error" in maybeJson && typeof maybeJson.error === "string"
+          ? maybeJson.error
+          : null) ||
+        (maybeJson && typeof maybeJson === "object" && "message" in maybeJson && typeof maybeJson.message === "string"
+          ? maybeJson.message
+          : null) ||
+        `Failed to send message (HTTP ${res.status}).`;
+
+      setSubmitError(message);
+      return;
+    }
+
     onSubmitted?.(values);
     reset();
     setSubmitted(true);
@@ -41,6 +97,11 @@ export function ContactForm({ onSubmitted }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input id="website" tabIndex={-1} autoComplete="off" {...register("website")} />
+      </div>
+
       <div>
         <label htmlFor="name" className="block text-sm font-semibold mb-2">
           Full Name
@@ -59,7 +120,7 @@ export function ContactForm({ onSubmitted }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="email" className="block text-sm font-semibold mb-2">
-            Email Address
+            Email Address (optional)
           </label>
           <input
             id="email"
@@ -83,6 +144,21 @@ export function ContactForm({ onSubmitted }: Props) {
             className="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-border focus:border-primary focus:ring-4 focus:ring-primary/20 text-sm transition-all"
           />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="subject" className="block text-sm font-semibold mb-2">
+          Subject (optional)
+        </label>
+        <input
+          id="subject"
+          type="text"
+          placeholder="Property management enquiry"
+          {...register("subject")}
+          className="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-border focus:border-primary focus:ring-4 focus:ring-primary/20 text-sm transition-all"
+          aria-invalid={!!errors.subject}
+        />
+        {errors.subject && <p className="mt-2 text-xs text-primary">{errors.subject.message}</p>}
       </div>
 
       <div>
@@ -134,7 +210,12 @@ export function ContactForm({ onSubmitted }: Props) {
           Message received. A Sorana advisor will respond within one business day.
         </div>
       )}
+
+      {submitError && (
+        <div className="rounded-2xl border border-primary/40 bg-primary/5 px-5 py-4 text-sm text-foreground">
+          {submitError}
+        </div>
+      )}
     </form>
   );
 }
-
