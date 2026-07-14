@@ -25,8 +25,7 @@ Open `http://localhost:3000`.
 
 ## Environment Variables (Optional)
 
-- `NEXT_PUBLIC_ANDROID_APK_URL` — override APK download URL (defaults to `https://www.soranapropertymanagers.com/downloads/sorana.apk`)
-- `NEXT_PUBLIC_ANDROID_APK_SHA256` — override APK SHA256 shown on `/download-app`
+- `NEXT_PUBLIC_GOOGLE_PLAY_URL` — override the Play Store app URL (defaults to `https://play.google.com/store/apps/details?id=com.soranapropertymanagers.app`)
 - `NEXT_PUBLIC_CONTACT_API_URL` — override contact form POST endpoint (defaults to `https://app.soranapropertymanagers.com/api/public/contact`)
 
 Contact form backend requirements (set on the API host):
