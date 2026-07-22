@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
-import heroImage from "../../../../public/property.jpg";
+import propertyImage from "../../../../public/property.jpg";
 import dashboardImage from "../../../../public/bg.jpg";
 import {
   ArrowRight,
@@ -37,11 +37,20 @@ type Item = {
   desc: string;
 };
 
-const heroFeatures = [
-  { icon: Home, label: "Multiple Properties" },
-  { icon: Users, label: "Multiple Users & Roles" },
-  { icon: Bell, label: "Real-time Updates" },
-  { icon: ShieldCheck, label: "Secure & Reliable" },
+const heroTrustIndicators = [
+  "Unlimited Properties",
+  "Real-time Reports",
+  "Secure Cloud Platform",
+  "Mobile Friendly",
+];
+
+const floatingMetrics = [
+  { label: "Monthly Revenue", value: "KES 2.8M" },
+  { label: "Occupancy", value: "124 / 136 Units" },
+  { label: "Rent Collection", value: "95%" },
+  { label: "Active Properties", value: "48" },
+  { label: "Pending Maintenance", value: "12" },
+  { label: "Airbnb Bookings", value: "38 This Month" },
 ];
 
 const dashboardItems = [
@@ -195,217 +204,414 @@ const heroMotion = {
   }),
 };
 
+function MetricBubble({
+  label,
+  value,
+  className,
+  delay = 0,
+}: {
+  label: string;
+  value: string;
+  className: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 12, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] as const }}
+      whileHover={{ y: -4, scale: 1.01 }}
+    >
+      <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.7)]">
+        <p className="text-[10px] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">{label}</p>
+        <p className="mt-1 text-base font-bold text-slate-950 dark:text-white">{value}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function DashboardScreen() {
+  const navItems = ["Overview", "Properties", "Tenants", "Payments", "Reports", "Messages"];
+  const stats = [
+    { label: "Rent Collected", value: "95%", tone: "bg-primary/10 text-primary" },
+    { label: "Airbnb Revenue", value: "KES 1.2M", tone: "bg-sky-500/10 text-sky-700 dark:text-sky-300" },
+    { label: "Open Requests", value: "12", tone: "bg-amber-500/10 text-amber-700 dark:text-amber-300" },
+  ] as const;
+
+  return (
+    <div className="bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
+      <div className="flex items-center justify-between border-b border-slate-200/80 px-4 py-4 dark:border-white/10">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-sky-500 text-white shadow-[0_12px_30px_-20px_rgba(66,199,117,0.8)]">
+            <LayoutDashboard className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">Sorana Dashboard</p>
+            <p className="text-sm font-semibold text-slate-950 dark:text-white">Portfolio overview</p>
+          </div>
+        </div>
+        <div className="hidden items-center gap-2 rounded-full bg-slate-100 px-3 py-2 dark:flex dark:bg-white/8">
+          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-300">Cloud sync live</span>
+        </div>
+      </div>
+
+      <div className="grid gap-4 p-4 md:grid-cols-[11.5rem_minmax(0,1fr)]">
+        <aside className="hidden rounded-[1.5rem] border border-slate-200/90 bg-slate-50/90 p-4 dark:border-white/10 dark:bg-slate-900/60 md:block">
+          <div className="space-y-1">
+            {navItems.map((item, index) => {
+              const active = index === 0;
+              return (
+                <div
+                  key={item}
+                  className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm transition ${
+                    active
+                      ? "bg-primary/10 text-slate-950 dark:text-white"
+                      : "text-slate-500 hover:bg-white/80 dark:text-slate-300 dark:hover:bg-white/8"
+                  }`}
+                >
+                  <span
+                    className={`h-2.5 w-2.5 rounded-full ${active ? "bg-primary" : "bg-slate-300 dark:bg-slate-600"}`}
+                  />
+                  <span className="font-medium">{item}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-slate-950">
+            <Image
+              src={propertyImage}
+              alt="Managed property thumbnail"
+              width={720}
+              height={520}
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 180px"
+              className="h-32 w-full object-cover"
+            />
+            <div className="p-3">
+              <p className="text-xs uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Property</p>
+              <p className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">Cedar Heights</p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">12 units • 98% occupied</p>
+            </div>
+          </div>
+        </aside>
+
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-[0_14px_35px_-28px_rgba(15,23,42,0.3)] dark:border-white/10 dark:bg-[#0f172a]"
+              >
+                <div className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${stat.tone}`}>
+                  Live
+                </div>
+                <p className="mt-3 text-lg font-bold text-slate-950 dark:text-white">{stat.value}</p>
+                <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">Revenue trend</p>
+                  <h3 className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">Monthly performance</h3>
+                </div>
+                <div className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">+14.2%</div>
+              </div>
+
+              <div className="mt-4 rounded-[1.25rem] bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-3 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+                <svg viewBox="0 0 640 220" className="h-40 w-full">
+                  <defs>
+                    <linearGradient id="soranaLine" x1="0" x2="1">
+                      <stop offset="0%" stopColor="#42C775" />
+                      <stop offset="100%" stopColor="#1E3A8A" />
+                    </linearGradient>
+                  </defs>
+                  <g fill="none" stroke="currentColor" className="text-slate-200 dark:text-slate-800">
+                    {[40, 90, 140, 190].map((y) => (
+                      <path key={y} d={`M20 ${y} H620`} strokeWidth="1" />
+                    ))}
+                  </g>
+                  <path
+                    d="M20 170C72 158 86 118 126 128C164 138 186 92 230 96C270 100 298 62 336 70C375 78 395 128 438 116C478 104 506 56 550 62C588 67 602 92 620 84"
+                    stroke="url(#soranaLine)"
+                    strokeWidth="6"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M20 170C72 158 86 118 126 128C164 138 186 92 230 96C270 100 298 62 336 70C375 78 395 128 438 116C478 104 506 56 550 62C588 67 602 92 620 84V200H20Z"
+                    fill="url(#soranaLine)"
+                    opacity="0.12"
+                  />
+                </svg>
+              </div>
+
+              <div className="mt-4 grid grid-cols-3 gap-3">
+                {[
+                  { label: "Collected", value: "KES 1.9M" },
+                  { label: "Expenses", value: "KES 240K" },
+                  { label: "Balance", value: "KES 380K" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[1.1rem] bg-slate-50 p-3 dark:bg-white/5"
+                  >
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{item.label}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">Recent activity</p>
+                    <h3 className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">Live updates</h3>
+                  </div>
+                  <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
+                    3 min ago
+                  </span>
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  {[
+                    "Rent payment received from Block A",
+                    "Maintenance request opened for Unit 14",
+                    "Airbnb booking confirmed for this weekend",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-[1rem] border border-slate-200/80 bg-slate-50 px-3 py-3 text-sm text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
+                <p className="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">Next action</p>
+                <p className="mt-2 text-sm font-semibold text-slate-950 dark:text-white">12 maintenance items awaiting approval</p>
+                <p className="mt-1 text-xs leading-6 text-slate-500 dark:text-slate-400">
+                  Stay ahead of maintenance, collections, and tenant communication with one secure platform.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileScreen() {
+  return (
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-[0_18px_45px_-28px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-slate-950 dark:shadow-[0_18px_45px_-28px_rgba(0,0,0,0.7)]">
+      <div className="flex items-center justify-between px-2 pb-3">
+        <div>
+          <p className="text-[9px] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Sorana</p>
+          <p className="text-xs font-semibold text-slate-950 dark:text-white">Dashboard</p>
+        </div>
+        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-sky-500" />
+      </div>
+
+      <div className="space-y-3 rounded-[1.25rem] bg-slate-50 p-3 dark:bg-white/5">
+        <div className="rounded-[1rem] bg-white p-3 dark:bg-slate-900">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Monthly Revenue</p>
+          <p className="mt-1 text-lg font-bold text-slate-950 dark:text-white">KES 2.8M</p>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          {[
+            { label: "Occupancy", value: "124 / 136" },
+            { label: "Rent", value: "95%" },
+            { label: "Pending", value: "12" },
+            { label: "Bookings", value: "38" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-[0.9rem] bg-white p-2.5 dark:bg-slate-900">
+              <p className="text-[9px] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</p>
+              <p className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="overflow-hidden rounded-[1rem] border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900">
+          <Image
+            src={propertyImage}
+            alt="Managed property thumbnail"
+            width={640}
+            height={420}
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 320px"
+            className="h-28 w-full object-cover"
+          />
+          <div className="p-3">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Cedar Heights</p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">Payments, reports, and maintenance in one place.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative isolate overflow-hidden pt-28 pb-20 md:pb-28 [font-family:var(--font-sans)]">
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.16),transparent_28%),radial-gradient(circle_at_82%_24%,rgba(66,199,117,0.16),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#eef6ff_54%,#ffffff_100%)]" />
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_-15%,rgba(255,255,255,0.95),transparent_32%)]" />
+      <section className="relative isolate overflow-hidden pt-28 pb-20 md:pb-28 [font-family:var(--font-sans)] [&_*]:font-sans">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_16%,rgba(59,130,246,0.14),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(66,199,117,0.14),transparent_26%),linear-gradient(180deg,#ffffff_0%,#f6fbff_52%,#eff6ff_100%)] dark:bg-[radial-gradient(circle_at_18%_14%,rgba(59,130,246,0.18),transparent_30%),radial-gradient(circle_at_80%_18%,rgba(16,185,129,0.16),transparent_28%),linear-gradient(180deg,#020617_0%,#0f172a_52%,#020617_100%)]" />
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:72px_72px] opacity-50 dark:opacity-15" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/85 to-transparent dark:from-slate-950/70" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_110%,rgba(255,255,255,0.75),transparent_35%)] dark:bg-[radial-gradient(circle_at_50%_115%,rgba(15,23,42,0.25),transparent_38%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.02fr] gap-14 lg:gap-16 items-center">
-            <motion.div
-              className="max-w-2xl"
-              variants={heroMotion}
-              initial="hidden"
-              animate="visible"
-            >
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-10">
+            <motion.div className="max-w-2xl" variants={heroMotion} initial="hidden" animate="visible">
               <motion.div
                 custom={0}
                 variants={heroMotion}
-                className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-900 shadow-[0_12px_40px_-24px_rgba(30,58,138,0.35)] backdrop-blur"
+                className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-white/85 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-900 shadow-[0_16px_40px_-28px_rgba(30,58,138,0.3)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200"
               >
                 <span className="h-2 w-2 rounded-full bg-primary" />
-                All-in-one property management platform
+                Property Management Software
               </motion.div>
 
               <motion.h1
                 custom={0.06}
                 variants={heroMotion}
-                className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.05em] text-slate-950 leading-[0.96]"
+                className="mt-6 max-w-xl text-5xl font-extrabold tracking-[-0.06em] leading-[0.94] text-slate-950 dark:text-white sm:text-6xl xl:text-7xl"
               >
-                One system for landlords, tenants, and Airbnb owners.
+                Manage Every Property From One Intelligent Dashboard
               </motion.h1>
 
               <motion.p
                 custom={0.12}
                 variants={heroMotion}
-                className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-slate-600"
+                className="mt-6 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300 sm:text-xl"
               >
-                Sorana brings payments, reporting, messaging, maintenance, and marketplace tools into one secure
-                dashboard so every portfolio stays organized and easy to manage.
+                Manage properties, tenants, rent collection, Airbnb bookings, expenses, reports and payments from one
+                secure cloud platform built for landlords, property managers and Airbnb hosts.
               </motion.p>
 
-              <motion.div
-                custom={0.18}
-                variants={heroMotion}
-                className="mt-8 flex flex-col sm:flex-row gap-3"
-              >
+              <motion.div custom={0.18} variants={heroMotion} className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={site.portal.signUp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_18px_40px_-26px_rgba(66,199,117,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-hover"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-[0_18px_40px_-26px_rgba(66,199,117,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-hover"
                 >
                   Start Free
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <a
-                  href={site.portal.signIn}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-sky-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_14px_35px_-26px_rgba(30,58,138,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50"
+                <Link
+                  href="/contact-us"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-7 text-sm font-semibold text-slate-900 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
                 >
-                  Book Demo
+                  Book a Demo
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </motion.div>
 
-              <motion.div custom={0.24} variants={heroMotion} className="mt-10 grid grid-cols-2 gap-4 sm:flex sm:flex-wrap">
-                {heroFeatures.map((feature) => {
-                  const Icon = feature.icon;
-                  return (
-                    <motion.div
-                      key={feature.label}
-                      whileHover={{ y: -3 }}
-                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.25)] backdrop-blur"
-                    >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 to-emerald-100">
-                        <Icon className="h-5 w-5 text-sky-900" />
-                      </span>
-                      <div>
-                        <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Included</p>
-                        <p className="text-sm font-semibold text-slate-900">{feature.label}</p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+              <motion.div custom={0.24} variants={heroMotion} className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                {heroTrustIndicators.map((item) => (
+                  <motion.div
+                    key={item}
+                    whileHover={{ y: -3 }}
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70"
+                  >
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                      <BadgeCheck className="h-5 w-5 text-primary" />
+                    </span>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Trust</p>
+                      <p className="text-sm font-semibold text-slate-900 dark:text-white">{item}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
-              <motion.div
-                custom={0.3}
-                variants={heroMotion}
-                className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-600"
-              >
-                <div className="flex items-center gap-2">
+              <motion.div custom={0.3} variants={heroMotion} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                   <span className="flex -space-x-2">
                     {[1, 2, 3].map((item) => (
                       <span
                         key={item}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-sky-100 text-[11px] font-semibold text-sky-900 shadow-sm"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-sky-100 text-[11px] font-semibold text-sky-900 shadow-sm dark:border-slate-950 dark:bg-slate-800 dark:text-slate-100"
                       >
                         {item}
                       </span>
                     ))}
                   </span>
-                  <span className="font-medium text-slate-700">Trusted by growing property teams</span>
+                  <span className="font-medium">Trusted by growing property teams</span>
                 </div>
                 <div className="flex items-center gap-1 text-amber-500">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={star} className="h-4 w-4 fill-current" />
                   ))}
-                  <span className="ml-1 text-slate-600">Premium property experience</span>
+                  <span className="ml-1 text-sm text-slate-600 dark:text-slate-300">Premium property experience</span>
                 </div>
               </motion.div>
             </motion.div>
 
-            <motion.div
-              className="relative mx-auto w-full max-w-[34rem]"
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="absolute -inset-8 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(66,199,117,0.12),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(59,130,246,0.14),transparent_28%)] blur-2xl" />
+            <div className="relative mx-auto w-full max-w-[50rem]">
+              <div className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_18%,rgba(66,199,117,0.16),transparent_28%),radial-gradient(circle_at_70%_22%,rgba(59,130,246,0.16),transparent_30%)] blur-3xl dark:bg-[radial-gradient(circle_at_30%_18%,rgba(66,199,117,0.12),transparent_28%),radial-gradient(circle_at_70%_22%,rgba(59,130,246,0.18),transparent_30%)]" />
 
-              <div className="relative rounded-[2rem] border border-slate-200/80 bg-white p-4 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.35)] sm:p-5">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">Sorana Dashboard</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-900">Portfolio overview</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                    <span className="text-xs font-medium text-slate-500">Live</span>
-                  </div>
-                </div>
-
-                <div className="relative mt-5 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50">
-                  <Image
-                    src={dashboardImage}
-                    alt="Sorana dashboard preview"
-                    width={1400}
-                    height={980}
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 58vw"
-                    className="h-auto w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/25 via-transparent to-transparent" />
-
-                  <motion.div
-                    className="absolute left-4 top-4 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_12px_28px_-20px_rgba(30,58,138,0.4)] backdrop-blur"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35, duration: 0.45 }}
-                  >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Monthly Revenue</p>
-                    <p className="mt-1 text-lg font-bold text-slate-950">KSH 824,500</p>
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute right-4 top-6 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_12px_28px_-20px_rgba(30,58,138,0.4)] backdrop-blur"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.45, duration: 0.45 }}
-                  >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Occupancy</p>
-                    <p className="mt-1 text-lg font-bold text-slate-950">98.4%</p>
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[-52%]"
-                    initial={{ opacity: 0, y: 16, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                  >
-                    <div className="relative w-[9.25rem] rounded-[2rem] border border-slate-200 bg-slate-950 p-2 shadow-[0_24px_50px_-30px_rgba(15,23,42,0.55)]">
-                      <div className="overflow-hidden rounded-[1.5rem] bg-white">
-                        <Image
-                          src={heroImage}
-                          alt="Sorana mobile app mockup"
-                          width={520}
-                          height={980}
-                          sizes="(max-width: 1024px) 34vw, 14rem"
-                          className="h-auto w-full object-cover"
-                        />
-                      </div>
-                      <div className="absolute bottom-3 left-1/2 w-[82%] -translate-x-1/2 rounded-[1.1rem] bg-slate-950/92 px-3 py-2 text-center text-[11px] font-medium text-white shadow-lg">
-                        Real-time notifications
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-5 left-6 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_12px_30px_-20px_rgba(30,58,138,0.35)] backdrop-blur"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.45 }}
-                  >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Pending Tasks</p>
-                    <p className="mt-1 text-base font-bold text-slate-950">12 items</p>
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-4 right-6 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_12px_30px_-20px_rgba(30,58,138,0.35)] backdrop-blur"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.45 }}
-                  >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Payments</p>
-                    <p className="mt-1 text-base font-bold text-slate-950">92% collected</p>
-                  </motion.div>
-                </div>
+              <div className="hidden lg:block">
+                <MetricBubble label={floatingMetrics[0].label} value={floatingMetrics[0].value} className="absolute -left-8 top-10 z-20 w-[13.5rem]" delay={0.15} />
+                <MetricBubble label={floatingMetrics[1].label} value={floatingMetrics[1].value} className="absolute -right-6 top-4 z-20 w-[14rem]" delay={0.2} />
+                <MetricBubble label={floatingMetrics[2].label} value={floatingMetrics[2].value} className="absolute -left-14 bottom-24 z-20 w-[12rem]" delay={0.25} />
+                <MetricBubble label={floatingMetrics[3].label} value={floatingMetrics[3].value} className="absolute -right-8 top-[42%] z-20 w-[11.5rem]" delay={0.3} />
+                <MetricBubble label={floatingMetrics[4].label} value={floatingMetrics[4].value} className="absolute left-8 -bottom-6 z-20 w-[13rem]" delay={0.35} />
+                <MetricBubble label={floatingMetrics[5].label} value={floatingMetrics[5].value} className="absolute right-12 -bottom-2 z-20 w-[14.5rem]" delay={0.4} />
               </div>
-            </motion.div>
+
+              <motion.div
+                className="relative z-10 mx-auto w-full max-w-[44.5rem] lg:[transform:perspective(2200px)_rotateX(10deg)_rotateY(-18deg)] lg:translate-y-2"
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="rounded-[2.6rem] bg-gradient-to-b from-slate-300 to-slate-500 p-3 pb-4 shadow-[0_40px_100px_-55px_rgba(15,23,42,0.55)] dark:from-slate-700 dark:to-slate-950">
+                  <div className="rounded-[2rem] bg-white/85 p-3 backdrop-blur dark:bg-[#020617]">
+                    <div className="mx-auto mb-3 h-2 w-24 rounded-full bg-slate-300 dark:bg-white/15" />
+                    <DashboardScreen />
+                  </div>
+                  <div className="mx-auto mt-3 h-4 w-[42%] rounded-b-full bg-gradient-to-b from-slate-400 to-slate-600 dark:from-slate-700 dark:to-slate-950" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="relative z-20 mx-auto mt-6 w-[18rem] sm:w-[18.5rem] lg:absolute lg:-right-4 lg:-bottom-8 lg:mt-0 lg:w-[19rem]"
+                initial={{ opacity: 0, y: 18, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.72, delay: 0.16, ease: [0.16, 1, 0.3, 1] as const }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="rounded-[2.4rem] bg-gradient-to-b from-slate-200 to-slate-400 p-2 shadow-[0_32px_90px_-50px_rgba(15,23,42,0.58)] dark:from-slate-700 dark:to-slate-950">
+                  <div className="rounded-[2rem] bg-white p-2 dark:bg-[#020617]">
+                    <MobileScreen />
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:hidden">
+                {floatingMetrics.map((metric) => (
+                  <div key={metric.label} className="rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">{metric.label}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-950 dark:text-white">{metric.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
