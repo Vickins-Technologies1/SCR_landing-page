@@ -5,12 +5,12 @@ import { PricingPage } from "@/components/pages/pricing/PricingPage";
 export const metadata: Metadata = {
   title: `Pricing | ${site.shortName}`,
   description:
-    "Clear, transparent pricing for rent collection and full property management in Kenya. Estimate your monthly fee in seconds.",
+    "Sorana pricing for Free, Premium, and Full Management plans for landlords, tenants, and Airbnb owners.",
   metadataBase: new URL(site.url),
   openGraph: {
     title: `Pricing | ${site.shortName}`,
     description:
-      "Clear, transparent pricing for rent collection and full property management in Kenya. Estimate your monthly fee in seconds.",
+      "Sorana pricing for Free, Premium, and Full Management plans for landlords, tenants, and Airbnb owners.",
     url: `${site.url}/pricing`,
     siteName: site.shortName,
     locale: "en_KE",
@@ -21,4 +21,3 @@ export const metadata: Metadata = {
 export default function Page() {
   return <PricingPage />;
 }
-

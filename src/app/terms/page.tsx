@@ -5,11 +5,11 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: `Terms of Service | ${site.shortName}`,
-  description: "Terms of Service for Sorana Property Managers Limited website, owner portal, and mobile app.",
+  description: "Terms of Service for Sorana Property Managers Limited website, platform, marketplace, and mobile app.",
   metadataBase: new URL(site.url),
   openGraph: {
     title: `Terms of Service | ${site.shortName}`,
-    description: "Terms of Service for Sorana Property Managers Limited website, owner portal, and mobile app.",
+    description: "Terms of Service for Sorana Property Managers Limited website, platform, marketplace, and mobile app.",
     url: `${site.url}/terms`,
     siteName: site.shortName,
     locale: "en_KE",
@@ -25,15 +25,15 @@ export default function Page() {
           <Reveal>
             <p className="eyebrow">Legal</p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Terms of Service</h1>
-            <p className="mt-4 text-sm text-muted-foreground">Effective date: May 19, 2026</p>
+            <p className="mt-4 text-sm text-muted-foreground">Effective date: July 22, 2026</p>
           </Reveal>
 
           <Reveal className="mt-10 surface-card rounded-3xl p-7" delay={0.06}>
             <div className="space-y-6 text-sm md:text-base text-muted-foreground">
               <p>
                 These Terms of Service (&quot;Terms&quot;) govern your access to and use of the Sorana Property Managers
-                Limited website, owner portal, marketplace, and related services, including the Sorana Owner Android app
-                (together, the &quot;Services&quot;). By accessing or using the Services, you agree to these Terms.
+                Limited website, platform, marketplace, and related services, including the mobile app (together, the
+                &quot;Services&quot;). By accessing or using the Services, you agree to these Terms.
               </p>
 
               <div className="space-y-2">
@@ -149,4 +149,3 @@ export default function Page() {
     </main>
   );
 }
-

@@ -11,10 +11,11 @@ export default function Footer() {
             <p className="eyebrow">Sorana</p>
             <h3 className="text-2xl font-semibold">Property Managers Limited</h3>
             <p className="text-sm text-muted-foreground">
-              Caring for your property, protecting your investment with a premium, transparent, and tech-forward experience.
+              All-in-one property management for landlords, tenants, and Airbnb owners with secure payments, real-time
+              updates, and clear reporting.
             </p>
             <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              {["Transparent reporting", "Vetted vendors", "Tenant screening", "Owner portal access"].map((t) => (
+              {["Properties", "Tenants", "Payments", "Marketplace"].map((t) => (
                 <span key={t} className="rounded-full border border-border/60 bg-background/60 px-3 py-1">
                   {t}
                 </span>
@@ -56,7 +57,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="block hover:text-primary transition-colors"
               >
-                Market Place
+                Marketplace
               </a>
             </div>
           </div>
@@ -64,16 +65,19 @@ export default function Footer() {
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Services</p>
             <div className="space-y-2 text-sm">
-              <span className="block text-muted-foreground">Lease Administration</span>
-              <span className="block text-muted-foreground">Tenant Screening</span>
-              <span className="block text-muted-foreground">Maintenance Oversight</span>
-              <span className="block text-muted-foreground">Owner Reporting</span>
+              <span className="block text-muted-foreground">Property & unit management</span>
+              <span className="block text-muted-foreground">Rent collection and payments</span>
+              <span className="block text-muted-foreground">Maintenance and expenses</span>
+              <span className="block text-muted-foreground">Reports and notifications</span>
             </div>
           </div>
 
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
             <div className="space-y-2 text-sm text-muted-foreground">
+              <a href={site.url} target="_blank" rel="noopener noreferrer" className="block hover:text-primary transition-colors break-all">
+                {site.url}
+              </a>
               <p>{site.contact.address}</p>
               {site.contact.phones.map((p) => (
                 <a key={p} href={`tel:${p}`} className="block hover:text-primary transition-colors">

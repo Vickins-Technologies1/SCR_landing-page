@@ -2,14 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ClipboardCheck, FileText, Shield, Wrench } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, BadgeCheck, Building2, CircleDollarSign, LayoutDashboard, MessageSquare, ShieldCheck, Smartphone, Users } from "lucide-react";
+import heroImage from "../../../../public/property.jpg";
 import { site } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
-
-const heroImage =
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2200&q=75";
+import { useState } from "react";
 
 type Step = {
   title: string;
@@ -20,28 +17,28 @@ type Step = {
 
 const steps: Step[] = [
   {
-    icon: ClipboardCheck,
-    title: "Discovery & Strategy",
-    desc: "We assess your property, align expectations, and define the right management scope.",
-    outcomes: ["Asset review & risk scan", "Scope alignment and SLA expectations", "Onboarding timeline and requirements"],
+    icon: BadgeCheck,
+    title: "Create your account",
+    desc: "Sign up once and set up the properties, units, and roles you want to manage.",
+    outcomes: ["Add properties and units", "Assign landlord, tenant, or staff roles", "Set up your portal access"],
   },
   {
-    icon: FileText,
-    title: "Tenant Placement",
-    desc: "We market, screen, and onboard quality tenants with clear lease controls.",
-    outcomes: ["Screening & verification", "Lease preparation and signing", "Move‑in checklist and handover"],
+    icon: LayoutDashboard,
+    title: "Use one dashboard",
+    desc: "Everything flows into one workspace so you can manage properties, tenants, payments, expenses, and messages.",
+    outcomes: ["Track payments and balances", "Review expenses and reports", "Move between modules quickly"],
   },
   {
-    icon: Wrench,
-    title: "Operational Oversight",
-    desc: "Maintenance workflows, inspections, and vendor governance keep units performing.",
-    outcomes: ["Vetted vendor coordination", "Inspection cadence", "Issue resolution and documentation"],
+    icon: CircleDollarSign,
+    title: "Collect and communicate",
+    desc: "Handle manual and automated payments while sending real-time notifications through the channels you prefer.",
+    outcomes: ["WhatsApp, SMS, and Email alerts", "Receipts and statements", "Role-based approvals"],
   },
   {
-    icon: Shield,
-    title: "Reporting & Compliance",
-    desc: "You receive statements, insights, and documentation with full visibility.",
-    outcomes: ["Monthly owner statements", "Compliance documentation tracking", "Performance recommendations"],
+    icon: ShieldCheck,
+    title: "Monitor performance",
+    desc: "Use financial reports, vacancy tracking, and maintenance workflows to keep the portfolio healthy.",
+    outcomes: ["Bank-style reporting", "Maintenance and vacancy tracking", "Marketplace and Airbnb support"],
   },
 ];
 
@@ -54,19 +51,19 @@ export function HowItWorksPage() {
     <main className="min-h-screen bg-background text-foreground">
       <section className="relative isolate overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 z-0">
-          <Image src={heroImage} alt="Property operations" fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/80 via-[#1E3A8A]/55 to-background" />
+          <Image src={heroImage} alt="Sorana platform workflow" fill priority sizes="100vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/82 via-[#1E3A8A]/58 to-background" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-12 items-end">
             <Reveal>
               <p className="eyebrow text-white/80">How It Works</p>
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4 text-white">
-                A structured, premium process for hands‑off ownership.
+                A simple workflow for landlords, tenants, and Airbnb owners.
               </h1>
               <p className="mt-5 text-sm md:text-base text-white/80 max-w-xl">
-                Our workflow blends people, technology, and market expertise into a seamless management experience for Kenyan
-                property owners.
+                Sorana gives every user role a clean way to act, while the dashboard keeps all operational and financial
+                data connected.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
@@ -93,10 +90,10 @@ export function HowItWorksPage() {
                 <p className="text-xs uppercase tracking-[0.3em] text-white/75">What you get</p>
                 <div className="mt-4 space-y-3 text-sm text-white/90">
                   {[
-                    "Clear onboarding checklist",
-                    "Dedicated account manager",
-                    "Vendor governance and documentation",
-                    "Monthly owner reporting",
+                    "Role-based access for different users",
+                    "Real-time updates and notifications",
+                    "Payments, reports, and expenses in one place",
+                    "Support for property, tenant, and Airbnb workflows",
                   ].map((item) => (
                     <div key={item} className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3">
                       {item}
@@ -114,24 +111,25 @@ export function HowItWorksPage() {
           <Reveal>
             <div className="text-center">
               <p className="eyebrow">Timeline</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">Step‑by‑step, fully transparent.</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">Everything starts with the dashboard.</h2>
               <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-                Select a step to see the outcomes and what we deliver at that stage.
+                Select a step to see how Sorana moves from setup to day-to-day operations.
               </p>
             </div>
           </Reveal>
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
             <Reveal>
-              <div className="surface-card rounded-3xl p-4">
-                {steps.map((s, i) => {
-                  const StepIcon = s.icon;
-                  const isActive = i === activeIndex;
+              <div className="surface-card rounded-[2rem] p-4">
+                {steps.map((step, index) => {
+                  const StepIcon = step.icon;
+                  const isActive = index === activeIndex;
+
                   return (
                     <button
-                      key={s.title}
+                      key={step.title}
                       type="button"
-                      onClick={() => setActiveIndex(i)}
+                      onClick={() => setActiveIndex(index)}
                       className={`w-full text-left rounded-2xl px-4 py-4 transition flex items-start gap-3 ${
                         isActive ? "bg-primary/10 border border-primary/20" : "hover:bg-muted/60"
                       }`}
@@ -142,10 +140,10 @@ export function HowItWorksPage() {
                       </span>
                       <span className="flex-1">
                         <span className="flex items-center justify-between gap-3">
-                          <span className="text-sm font-semibold">{s.title}</span>
-                          <span className="text-xs text-muted-foreground">Step {i + 1}</span>
+                          <span className="text-sm font-semibold">{step.title}</span>
+                          <span className="text-xs text-muted-foreground">Step {index + 1}</span>
                         </span>
-                        <span className="mt-1 block text-sm text-muted-foreground">{s.desc}</span>
+                        <span className="mt-1 block text-sm text-muted-foreground">{step.desc}</span>
                       </span>
                     </button>
                   );
@@ -154,49 +152,39 @@ export function HowItWorksPage() {
             </Reveal>
 
             <Reveal delay={0.06}>
-              <div className="glass-panel rounded-3xl p-7 md:p-9 border border-white/60">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={current.title}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              <div className="glass-panel rounded-[2rem] p-7 md:p-9 border border-white/60">
+                <div className="flex items-center gap-3">
+                  <span className="h-11 w-11 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Selected step</p>
+                    <h3 className="text-xl font-semibold">{current.title}</h3>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm text-muted-foreground">{current.desc}</p>
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {current.outcomes.map((outcome) => (
+                    <div key={outcome} className="surface-card rounded-2xl p-4 text-sm text-muted-foreground">
+                      {outcome}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 rounded-2xl border border-border/60 bg-muted/40 p-5">
+                  <p className="text-sm font-semibold text-foreground">Want us to set this up for you?</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Start onboarding and we will help configure your properties, users, and workflow.
+                  </p>
+                  <a
+                    href={site.portal.signUp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="h-11 w-11 rounded-2xl bg-primary/10 flex items-center justify-center">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </span>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Selected step</p>
-                        <h3 className="text-xl font-semibold">{current.title}</h3>
-                      </div>
-                    </div>
-                    <p className="mt-4 text-sm text-muted-foreground">{current.desc}</p>
-                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {current.outcomes.map((o) => (
-                        <div key={o} className="surface-card rounded-2xl p-4 text-sm text-muted-foreground">
-                          {o}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-8 rounded-2xl border border-border/60 bg-muted/40 p-5">
-                      <p className="text-sm font-semibold text-foreground">Want us to handle this for you?</p>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Start onboarding today and get a dedicated manager assigned to your property.
-                      </p>
-                      <a
-                        href={site.portal.signUp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm"
-                      >
-                        Get Started
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                    Get Started
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -208,17 +196,17 @@ export function HowItWorksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 items-center">
             <Reveal>
               <p className="eyebrow">Standards</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">Built for premium service outcomes.</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3">Built for secure, mobile-friendly operations.</h2>
               <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-xl">
-                We pair hands-on oversight with digital reporting so you can track every decision, cost, and result with
-                confidence.
+                Sorana keeps your team aligned with secure access, simple workflows, and reporting that works on the
+                move.
               </p>
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  "Dedicated account manager",
-                  "Monthly performance brief",
-                  "Emergency response coverage",
-                  "Tenant satisfaction tracking",
+                  "Secure and reliable access",
+                  "Multi-user roles and permissions",
+                  "Real-time updates and notifications",
+                  "Mobile-friendly dashboard",
                 ].map((item) => (
                   <div key={item} className="surface-card rounded-2xl p-4 text-sm text-muted-foreground">
                     {item}
@@ -228,12 +216,11 @@ export function HowItWorksPage() {
             </Reveal>
 
             <Reveal delay={0.06}>
-              <div className="glass-panel rounded-3xl p-8 border border-white/60">
+              <div className="glass-panel rounded-[2rem] p-8 border border-white/60">
                 <p className="eyebrow">Next Step</p>
                 <h3 className="text-xl font-semibold mt-3">Ready to simplify ownership?</h3>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Join property owners across Kenya who rely on Sorana for dependable collections, tenant care, and portfolio
-                  performance.
+                  Sorana helps you move from scattered spreadsheets to one secure property platform.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <Link

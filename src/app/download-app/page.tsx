@@ -6,11 +6,11 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: `Download App | ${site.shortName}`,
-  description: "Get the Sorana Owner app from Google Play for updates, reporting, and portfolio visibility.",
+  description: "Download the Sorana app for property management updates, reporting, and portfolio visibility.",
   metadataBase: new URL(site.url),
   openGraph: {
     title: `Download App | ${site.shortName}`,
-    description: "Get the Sorana Owner app from Google Play for updates, reporting, and portfolio visibility.",
+    description: "Download the Sorana app for property management updates, reporting, and portfolio visibility.",
     url: `${site.url}/download-app`,
     siteName: site.shortName,
     locale: "en_KE",
@@ -29,9 +29,10 @@ export default function Page() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
             <Reveal>
               <p className="eyebrow">Download</p>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Get the Android app</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Get the Sorana Android app</h1>
               <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-2xl">
-                Download the Sorana Owner app directly from Google Play for a smoother install and automatic updates.
+                Download the Sorana app directly from Google Play for a smoother install, automatic updates, and mobile
+                access to your property dashboard.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -48,8 +49,8 @@ export default function Page() {
                   href="/contact-us"
                   className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted/60 transition"
                   >
-                    Need help installing?
-                  </Link>
+                  Need help installing?
+                </Link>
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground">
@@ -85,7 +86,7 @@ export default function Page() {
 
             <Reveal delay={0.06}>
               <div className="glass-panel rounded-3xl p-7 border border-white/60">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">How to get started</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">How to get started</p>
 
                 <ol className="mt-5 space-y-4 text-sm text-muted-foreground">
                   <li className="flex gap-3">
@@ -100,15 +101,14 @@ export default function Page() {
                   </li>
                   <li className="flex gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
-                    <span>Open the app and sign in to continue managing your property.</span>
+                    <span>Open the app and sign in to manage properties, tenants, or Airbnb bookings.</span>
                   </li>
                 </ol>
 
                 <div className="mt-8 rounded-2xl border border-border/60 bg-muted/40 p-5">
                   <p className="text-sm font-semibold text-foreground">Updates</p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    New releases will appear in Google Play automatically, so you do not need to reinstall the app from
-                    a file.
+                    New releases appear in Google Play automatically, so you always stay on the latest version.
                   </p>
                 </div>
 

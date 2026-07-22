@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/manrope";
-import "@fontsource-variable/cormorant-garamond";
-import "@fontsource-variable/jetbrains-mono";
+import localFont from "next/font/local";
 import "./globals.css";
 import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
@@ -10,10 +8,55 @@ import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { site } from "@/lib/site";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
+const manrope = localFont({
+  src: [
+    {
+      path: "../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const cormorantGaramond = localFont({
+  src: [
+    {
+      path: "../../node_modules/@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-normal.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = localFont({
+  src: [
+    {
+      path: "../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2",
+      weight: "100 800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: site.name,
   description: site.description,
   metadataBase: new URL(site.url),
+  applicationName: site.shortName,
+  keywords: [
+    "property management Kenya",
+    "landlord portal",
+    "tenant portal",
+    "Airbnb management",
+    "property software",
+    "rent collection",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -24,11 +67,17 @@ export const metadata: Metadata = {
     siteName: site.shortName,
     locale: "en_KE",
     type: "website",
+    images: [
+      {
+        url: `${site.url}/opengraph-image`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
     description: site.description,
+    images: [`${site.url}/twitter-image`],
   },
   icons: {
     icon: [
@@ -47,7 +96,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className={`${manrope.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
         <script
           type="application/ld+json"

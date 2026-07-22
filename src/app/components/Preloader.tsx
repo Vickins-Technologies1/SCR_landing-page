@@ -6,16 +6,11 @@ import Image from "next/image";
 const Preloader = () => {
   const [isMounted, setIsMounted] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(true);
 
   useEffect(() => {
-    const EXIT_MS = 900;
-    const HOLD_MS = 1900;
-
-    let raf2: number | null = null;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setIsReady(true));
-    });
+    const EXIT_MS = 420;
+    const HOLD_MS = 180;
 
     const exitTimer = window.setTimeout(() => {
       setIsOpen(false);
@@ -26,8 +21,6 @@ const Preloader = () => {
     }, HOLD_MS + EXIT_MS + 60);
 
     return () => {
-      cancelAnimationFrame(raf1);
-      if (raf2) cancelAnimationFrame(raf2);
       window.clearTimeout(exitTimer);
       window.clearTimeout(unmountTimer);
     };
@@ -68,8 +61,8 @@ const Preloader = () => {
 
             <div className="text-block">
               <p className="eyebrow">Sorana Property Managers</p>
-              <h1 className="title">Premium Property Management</h1>
-              <p className="subtitle">Caring for your property, protecting your investment.</p>
+              <h1 className="title">One System. All You Need.</h1>
+              <p className="subtitle">Landlords, tenants, and Airbnb owners in one secure platform.</p>
             </div>
 
             <div className="signal">

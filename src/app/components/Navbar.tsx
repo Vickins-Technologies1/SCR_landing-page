@@ -33,7 +33,7 @@ export default function Navbar() {
     },
     {
       href: site.portal.marketplace,
-      label: "Market Place",
+      label: "Marketplace",
       icon: Building2,
       external: true,
     },
@@ -46,7 +46,7 @@ export default function Navbar() {
   const actions = [
     {
       href: site.portal.signIn,
-      label: "Owner Portal",
+      label: "Sign In",
       icon: LogIn,
       external: true,
       variant: "ghost",

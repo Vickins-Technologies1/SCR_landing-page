@@ -1,7 +1,8 @@
 export const site = {
   name: "Sorana Property Managers Limited",
   shortName: "Sorana Property Managers",
-  description: "Caring for your property, Protecting your investment.",
+  description:
+    "All-in-one property management for landlords, tenants, and Airbnb owners with real-time updates, secure payments, and smart reporting.",
   url: "https://www.soranapropertymanagers.com",
   portal: {
     signIn: "https://app.soranapropertymanagers.com/",
@@ -10,9 +11,9 @@ export const site = {
   },
   contact: {
     email: "soranapropertymanagers@gmail.com",
-    phones: ["+254117649850", "+254702036837"],
+    phones: ["+254117649850", "+254745963183"],
     address: "Kerugoya, Kenya",
-    whatsapp: "+254702036837",
+    whatsapp: "+254745963183",
   },
   social: {
     facebook: "https://www.facebook.com/share/18Fx8TFFCZ/",
@@ -27,4 +28,3 @@ export function whatsappHref(message: string) {
   const query = message ? `?text=${encodeURIComponent(message)}` : "";
   return `https://wa.me/${number}${query}`;
 }
-

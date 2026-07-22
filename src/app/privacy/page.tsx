@@ -5,11 +5,13 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: `Privacy Policy | ${site.shortName}`,
-  description: "Privacy Policy describing how Sorana Property Managers Limited collects, uses, and shares information.",
+  description:
+    "Privacy Policy describing how Sorana Property Managers Limited collects, uses, and shares information across its platform.",
   metadataBase: new URL(site.url),
   openGraph: {
     title: `Privacy Policy | ${site.shortName}`,
-    description: "Privacy Policy describing how Sorana Property Managers Limited collects, uses, and shares information.",
+    description:
+      "Privacy Policy describing how Sorana Property Managers Limited collects, uses, and shares information across its platform.",
     url: `${site.url}/privacy`,
     siteName: site.shortName,
     locale: "en_KE",
@@ -25,15 +27,15 @@ export default function Page() {
           <Reveal>
             <p className="eyebrow">Legal</p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Privacy Policy</h1>
-            <p className="mt-4 text-sm text-muted-foreground">Effective date: May 19, 2026</p>
+            <p className="mt-4 text-sm text-muted-foreground">Effective date: July 22, 2026</p>
           </Reveal>
 
           <Reveal className="mt-10 surface-card rounded-3xl p-7" delay={0.06}>
             <div className="space-y-6 text-sm md:text-base text-muted-foreground">
               <p>
                 This Privacy Policy explains how Sorana Property Managers Limited (&quot;Sorana&quot;, &quot;we&quot;,
-                &quot;us&quot;) collects, uses, and shares information when you use our website, owner portal, marketplace,
-                and the Sorana Owner Android app (together, the &quot;Services&quot;).
+                &quot;us&quot;) collects, uses, and shares information when you use our website, platform, marketplace,
+                and mobile app (together, the &quot;Services&quot;).
               </p>
 
               <div className="space-y-2">
@@ -145,4 +147,3 @@ export default function Page() {
     </main>
   );
 }
-

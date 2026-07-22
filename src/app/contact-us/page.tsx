@@ -4,11 +4,11 @@ import { ContactUsPage } from "@/components/pages/contact/ContactUsPage";
 
 export const metadata: Metadata = {
   title: `Contact Us | ${site.shortName}`,
-  description: "Speak with a Sorana advisor about onboarding, pricing, and day‑to‑day operations.",
+  description: "Contact Sorana for onboarding, pricing, and setup support for landlords, tenants, and Airbnb owners.",
   metadataBase: new URL(site.url),
   openGraph: {
     title: `Contact Us | ${site.shortName}`,
-    description: "Speak with a Sorana advisor about onboarding, pricing, and day‑to‑day operations.",
+    description: "Contact Sorana for onboarding, pricing, and setup support for landlords, tenants, and Airbnb owners.",
     url: `${site.url}/contact-us`,
     siteName: site.shortName,
     locale: "en_KE",
@@ -19,4 +19,3 @@ export const metadata: Metadata = {
 export default function Page() {
   return <ContactUsPage />;
 }
-

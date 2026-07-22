@@ -1,9 +1,25 @@
 "use client";
 
-import { Mail, MapPin, Phone } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import { site, whatsappHref } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
-import { ContactForm } from "@/components/forms/ContactForm";
+
+const ContactForm = dynamic(
+  () => import("@/components/forms/ContactForm").then((mod) => mod.ContactForm),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="space-y-4">
+        <div className="h-12 rounded-2xl bg-muted/60" />
+        <div className="h-12 rounded-2xl bg-muted/60" />
+        <div className="h-12 rounded-2xl bg-muted/60" />
+        <div className="h-32 rounded-2xl bg-muted/60" />
+        <div className="h-14 rounded-full bg-muted/60" />
+      </div>
+    ),
+  }
+);
 
 export function ContactUsPage() {
   return (
@@ -13,15 +29,13 @@ export function ContactUsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
             <Reveal>
               <p className="eyebrow">Contact</p>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
-                A dedicated team ready to support your portfolio.
-              </h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">Let&apos;s set up your Sorana account.</h1>
               <p className="mt-5 text-sm md:text-base text-muted-foreground max-w-xl">
-                Tell us what you own and what you want handled. We’ll respond with a clear onboarding plan and fee guidance.
+                Tell us what you manage and we&apos;ll help you get the right mix of portals, roles, and payment settings.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href={whatsappHref("Hi Sorana team — I’d like a consultation about property management.")}
+                  href={whatsappHref("Hi Sorana team, I would like a consultation about Sorana property management.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-full text-sm inline-flex items-center gap-2"
@@ -36,6 +50,14 @@ export function ContactUsPage() {
                 >
                   Get Started
                 </a>
+                <a
+                  href={site.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-border/60 text-foreground font-semibold py-3 px-6 rounded-full text-sm inline-flex items-center gap-2 hover:bg-muted/60 transition"
+                >
+                  Visit Website
+                </a>
               </div>
             </Reveal>
 
@@ -43,6 +65,17 @@ export function ContactUsPage() {
               <div className="glass-panel rounded-3xl p-6 border border-white/60">
                 <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Quick Contacts</p>
                 <div className="mt-4 space-y-4 text-sm text-muted-foreground">
+                  <div className="flex items-start gap-3">
+                    <span className="h-10 w-10 rounded-2xl bg-primary/10 flex items-center justify-center">
+                      <Globe className="w-5 h-5 text-primary" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-foreground">Website</p>
+                      <a href={site.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors break-all">
+                        {site.url}
+                      </a>
+                    </div>
+                  </div>
                   <div className="flex items-start gap-3">
                     <span className="h-10 w-10 rounded-2xl bg-primary/10 flex items-center justify-center">
                       <Mail className="w-5 h-5 text-primary" />
@@ -120,9 +153,9 @@ export function ContactUsPage() {
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
                     "One business day response time",
+                    "Website, email, and phone contact details",
                     "Clear onboarding timeline",
                     "Transparent fee guidance",
-                    "Dedicated account manager",
                   ].map((item) => (
                     <div key={item} className="surface-card rounded-2xl p-4 text-sm text-muted-foreground">
                       {item}
