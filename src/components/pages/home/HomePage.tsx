@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { ComponentType } from "react";
 import heroImage from "../../../../public/property.jpg";
 import dashboardImage from "../../../../public/bg.jpg";
@@ -24,6 +25,7 @@ import {
   Users,
   Wrench,
   Phone,
+  Star,
 } from "lucide-react";
 import { site } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
@@ -184,110 +186,226 @@ function CheckMark() {
   return <span className="h-2.5 w-2.5 rounded-full bg-primary" />;
 }
 
+const heroMotion = {
+  hidden: { opacity: 0, y: 18 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
+
 export function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="relative isolate overflow-hidden pt-28 pb-16 md:pb-20">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={heroImage}
-            alt="Sorana property management platform"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/84 via-[#1E3A8A]/66 to-background" />
-        </div>
+      <section className="relative isolate overflow-hidden pt-28 pb-20 md:pb-28 [font-family:var(--font-sans)]">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.16),transparent_28%),radial-gradient(circle_at_82%_24%,rgba(66,199,117,0.16),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#eef6ff_54%,#ffffff_100%)]" />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_-15%,rgba(255,255,255,0.95),transparent_32%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-            <Reveal>
-              <p className="eyebrow text-white/80">All-in-one property management platform</p>
-              <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-[1.06] max-w-3xl">
-                One System. All You Need.
-              </h1>
-              <p className="mt-5 max-w-2xl text-sm md:text-base text-white/82">
-                Complete Property Management Solution for Landlords, Tenants & Airbnb Owners. Sorana brings payments,
-                reporting, messaging, and operations into one secure dashboard.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.02fr] gap-14 lg:gap-16 items-center">
+            <motion.div
+              className="max-w-2xl"
+              variants={heroMotion}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div
+                custom={0}
+                variants={heroMotion}
+                className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-900 shadow-[0_12px_40px_-24px_rgba(30,58,138,0.35)] backdrop-blur"
+              >
+                <span className="h-2 w-2 rounded-full bg-primary" />
+                All-in-one property management platform
+              </motion.div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <motion.h1
+                custom={0.06}
+                variants={heroMotion}
+                className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.05em] text-slate-950 leading-[0.96]"
+              >
+                One system for landlords, tenants, and Airbnb owners.
+              </motion.h1>
+
+              <motion.p
+                custom={0.12}
+                variants={heroMotion}
+                className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-slate-600"
+              >
+                Sorana brings payments, reporting, messaging, maintenance, and marketplace tools into one secure
+                dashboard so every portfolio stays organized and easy to manage.
+              </motion.p>
+
+              <motion.div
+                custom={0.18}
+                variants={heroMotion}
+                className="mt-8 flex flex-col sm:flex-row gap-3"
+              >
                 <a
                   href={site.portal.signUp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_20px_40px_-30px_rgba(66,199,117,0.85)] transition hover:scale-[1.02] hover:bg-primary-hover"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_18px_40px_-26px_rgba(66,199,117,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-hover"
                 >
-                  Get Started
+                  Start Free
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
                   href={site.portal.signIn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-sky-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_14px_35px_-26px_rgba(30,58,138,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50"
                 >
-                  Open Platform
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white/92 transition hover:text-white"
-                >
-                  View Pricing
+                  Book Demo
                   <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
+                </a>
+              </motion.div>
 
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <motion.div custom={0.24} variants={heroMotion} className="mt-10 grid grid-cols-2 gap-4 sm:flex sm:flex-wrap">
                 {heroFeatures.map((feature) => {
                   const Icon = feature.icon;
                   return (
-                    <div key={feature.label} className="rounded-2xl border border-white/14 bg-white/10 px-4 py-4 backdrop-blur-sm">
-                      <Icon className="h-5 w-5 text-white" />
-                      <p className="mt-3 text-sm font-semibold text-white">{feature.label}</p>
-                    </div>
+                    <motion.div
+                      key={feature.label}
+                      whileHover={{ y: -3 }}
+                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.25)] backdrop-blur"
+                    >
+                      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-100 to-emerald-100">
+                        <Icon className="h-5 w-5 text-sky-900" />
+                      </span>
+                      <div>
+                        <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Included</p>
+                        <p className="text-sm font-semibold text-slate-900">{feature.label}</p>
+                      </div>
+                    </motion.div>
                   );
                 })}
-              </div>
-            </Reveal>
+              </motion.div>
 
-            <Reveal delay={0.08} y={18}>
-              <div className="surface-card overflow-hidden rounded-[2rem] border border-white/20 bg-black/20 shadow-[0_30px_80px_-60px_rgba(0,0,0,0.75)]">
-                <div className="relative h-[28rem]">
+              <motion.div
+                custom={0.3}
+                variants={heroMotion}
+                className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-600"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="flex -space-x-2">
+                    {[1, 2, 3].map((item) => (
+                      <span
+                        key={item}
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white bg-sky-100 text-[11px] font-semibold text-sky-900 shadow-sm"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="font-medium text-slate-700">Trusted by growing property teams</span>
+                </div>
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="h-4 w-4 fill-current" />
+                  ))}
+                  <span className="ml-1 text-slate-600">Premium property experience</span>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className="relative mx-auto w-full max-w-[34rem]"
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="absolute -inset-8 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(66,199,117,0.12),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(59,130,246,0.14),transparent_28%)] blur-2xl" />
+
+              <div className="relative rounded-[2rem] border border-slate-200/80 bg-white p-4 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.35)] sm:p-5">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">Sorana Dashboard</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-900">Portfolio overview</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-medium text-slate-500">Live</span>
+                  </div>
+                </div>
+
+                <div className="relative mt-5 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50">
                   <Image
                     src={dashboardImage}
                     alt="Sorana dashboard preview"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover"
+                    width={1400}
+                    height={980}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    className="h-auto w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#071827]/70 via-[#0F1C2E]/35 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/25 via-transparent to-transparent" />
 
-                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                    <div className="rounded-3xl border border-white/15 bg-white/12 p-5 backdrop-blur-xl">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15">
-                          <LayoutDashboard className="h-5 w-5 text-white" />
-                        </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.28em] text-white/70">Dashboard</p>
-                          <p className="text-sm font-semibold text-white">Manage everything in one place</p>
-                        </div>
+                  <motion.div
+                    className="absolute left-4 top-4 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_12px_28px_-20px_rgba(30,58,138,0.4)] backdrop-blur"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.45 }}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Monthly Revenue</p>
+                    <p className="mt-1 text-lg font-bold text-slate-950">KSH 824,500</p>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute right-4 top-6 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_12px_28px_-20px_rgba(30,58,138,0.4)] backdrop-blur"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45, duration: 0.45 }}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Occupancy</p>
+                    <p className="mt-1 text-lg font-bold text-slate-950">98.4%</p>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[-52%]"
+                    initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    <div className="relative w-[9.25rem] rounded-[2rem] border border-slate-200 bg-slate-950 p-2 shadow-[0_24px_50px_-30px_rgba(15,23,42,0.55)]">
+                      <div className="overflow-hidden rounded-[1.5rem] bg-white">
+                        <Image
+                          src={heroImage}
+                          alt="Sorana mobile app mockup"
+                          width={520}
+                          height={980}
+                          sizes="(max-width: 1024px) 34vw, 14rem"
+                          className="h-auto w-full object-cover"
+                        />
                       </div>
-                      <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-3">
-                        {dashboardItems.map((item) => (
-                          <div key={item} className="rounded-2xl border border-white/12 bg-white/8 px-3 py-2 text-center text-xs font-semibold text-white/92">
-                            {item}
-                          </div>
-                        ))}
+                      <div className="absolute bottom-3 left-1/2 w-[82%] -translate-x-1/2 rounded-[1.1rem] bg-slate-950/92 px-3 py-2 text-center text-[11px] font-medium text-white shadow-lg">
+                        Real-time notifications
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute -bottom-5 left-6 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_12px_30px_-20px_rgba(30,58,138,0.35)] backdrop-blur"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.45 }}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Pending Tasks</p>
+                    <p className="mt-1 text-base font-bold text-slate-950">12 items</p>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute -bottom-4 right-6 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_12px_30px_-20px_rgba(30,58,138,0.35)] backdrop-blur"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.45 }}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">Payments</p>
+                    <p className="mt-1 text-base font-bold text-slate-950">92% collected</p>
+                  </motion.div>
                 </div>
               </div>
-            </Reveal>
+            </motion.div>
           </div>
         </div>
       </section>
