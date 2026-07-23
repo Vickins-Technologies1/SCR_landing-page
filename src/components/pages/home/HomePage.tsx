@@ -222,9 +222,9 @@ function MetricBubble({
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] as const }}
       whileHover={{ y: -4, scale: 1.01 }}
     >
-      <div className="rounded-2xl border border-white/60 bg-white/88 px-3.5 py-2.5 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.42)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80 dark:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.7)]">
-        <p className="text-[0.7rem] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{label}</p>
-        <p className="mt-1 text-[0.95rem] font-bold text-slate-950 dark:text-white">{value}</p>
+      <div className="rounded-2xl border border-slate-200/80 bg-white/92 px-3.5 py-2.5 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.22)] backdrop-blur-xl">
+        <p className="text-[0.7rem] uppercase tracking-[0.2em] text-slate-500">{label}</p>
+        <p className="mt-1 text-[0.95rem] font-bold text-slate-950">{value}</p>
       </div>
     </motion.div>
   );
@@ -234,30 +234,30 @@ function DashboardScreen() {
   const navItems = ["Overview", "Properties", "Tenants", "Payments", "Reports", "Messages"];
   const stats = [
     { label: "Rent Collected", value: "95%", tone: "bg-primary/10 text-primary" },
-    { label: "Airbnb Revenue", value: "KES 1.2M", tone: "bg-sky-500/10 text-sky-700 dark:text-sky-300" },
-    { label: "Open Requests", value: "12", tone: "bg-amber-500/10 text-amber-700 dark:text-amber-300" },
+    { label: "Airbnb Revenue", value: "KES 1.2M", tone: "bg-sky-500/10 text-sky-700" },
+    { label: "Open Requests", value: "12", tone: "bg-amber-500/10 text-amber-700" },
   ] as const;
 
   return (
-    <div className="bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
-      <div className="flex items-center justify-between border-b border-slate-200/80 px-3 py-3 dark:border-white/10">
+    <div className="bg-white text-slate-900">
+      <div className="flex items-center justify-between border-b border-slate-200/80 px-3 py-3">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-sky-500 text-white shadow-[0_12px_30px_-20px_rgba(66,199,117,0.8)]">
             <LayoutDashboard className="h-4.5 w-4.5" />
           </div>
           <div>
-            <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Sorana Dashboard</p>
-            <p className="text-[0.95rem] font-semibold text-slate-950 dark:text-white">Portfolio overview</p>
+            <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Sorana Dashboard</p>
+            <p className="text-[0.95rem] font-semibold text-slate-950">Portfolio overview</p>
           </div>
         </div>
-        <div className="hidden items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 dark:flex dark:bg-white/8">
+        <div className="hidden items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5">
           <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          <span className="text-[0.75rem] font-medium text-slate-500 dark:text-slate-300">Cloud sync live</span>
+          <span className="text-[0.75rem] font-medium text-slate-500">Cloud sync live</span>
         </div>
       </div>
 
       <div className="grid gap-3 p-3 md:grid-cols-[10.25rem_minmax(0,1fr)]">
-        <aside className="hidden rounded-[1.5rem] border border-slate-200/90 bg-slate-50/90 p-3 dark:border-white/10 dark:bg-slate-900/60 md:block">
+        <aside className="hidden rounded-[1.5rem] border border-slate-200/90 bg-slate-50/90 p-3 md:block">
           <div className="space-y-1">
             {navItems.map((item, index) => {
               const active = index === 0;
@@ -265,22 +265,18 @@ function DashboardScreen() {
                 <div
                   key={item}
                   className={`flex items-center gap-2.5 rounded-2xl px-3 py-2 text-[0.82rem] transition ${
-                    active
-                      ? "bg-primary/10 text-slate-950 dark:text-white"
-                      : "text-slate-500 hover:bg-white/80 dark:text-slate-300 dark:hover:bg-white/8"
+                    active ? "bg-primary/10 text-slate-950" : "text-slate-500 hover:bg-white/80"
                   }`}
                 >
-                  <span
-                    className={`h-2.5 w-2.5 rounded-full ${active ? "bg-primary" : "bg-slate-300 dark:bg-slate-600"}`}
-                  />
+                  <span className={`h-2.5 w-2.5 rounded-full ${active ? "bg-primary" : "bg-slate-300"}`} />
                   <span className="font-medium">{item}</span>
                 </div>
               );
             })}
           </div>
 
-          <div className="mt-3 rounded-[1.25rem] border border-slate-200 bg-white p-3 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-slate-950">
-            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Property snapshot</p>
+          <div className="mt-3 rounded-[1.25rem] border border-slate-200 bg-white p-3 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)]">
+            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-slate-500">Property snapshot</p>
             <div className="mt-3 grid grid-cols-2 gap-2">
               {[
                 { label: "Properties", value: "48" },
@@ -288,9 +284,9 @@ function DashboardScreen() {
                 { label: "Occupied", value: "124" },
                 { label: "Alerts", value: "12" },
               ].map((item) => (
-                <div key={item.label} className="rounded-[1rem] bg-slate-50 p-2.5 dark:bg-white/5">
-                  <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</p>
-                  <p className="mt-1 text-[0.9rem] font-semibold text-slate-950 dark:text-white">{item.value}</p>
+                <div key={item.label} className="rounded-[1rem] bg-slate-50 p-2.5">
+                  <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500">{item.label}</p>
+                  <p className="mt-1 text-[0.9rem] font-semibold text-slate-950">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -306,28 +302,28 @@ function DashboardScreen() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.08 * index, ease: [0.16, 1, 0.3, 1] as const }}
                 whileHover={{ y: -2 }}
-                className="rounded-[1.15rem] border border-slate-200 bg-white p-3 shadow-[0_14px_35px_-28px_rgba(15,23,42,0.28)] dark:border-white/10 dark:bg-[#0f172a]"
+                className="rounded-[1.15rem] border border-slate-200 bg-white p-3 shadow-[0_14px_35px_-28px_rgba(15,23,42,0.28)]"
               >
                 <div className={`inline-flex rounded-full px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] ${stat.tone}`}>
                   Live
                 </div>
-                <p className="mt-2.5 text-[0.98rem] font-bold text-slate-950 dark:text-white">{stat.value}</p>
-                <p className="mt-1 text-[0.7rem] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{stat.label}</p>
+                <p className="mt-2.5 text-[0.98rem] font-bold text-slate-950">{stat.value}</p>
+                <p className="mt-1 text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">{stat.label}</p>
               </motion.div>
             ))}
           </div>
 
           <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
+            <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)]">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Revenue trend</p>
-                  <h3 className="mt-1 text-[0.92rem] font-semibold text-slate-950 dark:text-white">Monthly performance</h3>
+                  <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Revenue trend</p>
+                  <h3 className="mt-1 text-[0.92rem] font-semibold text-slate-950">Monthly performance</h3>
                 </div>
                 <div className="rounded-full bg-primary/10 px-2.5 py-1 text-[0.72rem] font-semibold text-primary">+14.2%</div>
               </div>
 
-              <div className="mt-3 rounded-[1.15rem] bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-2.5 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+              <div className="mt-3 rounded-[1.15rem] bg-gradient-to-br from-sky-50 via-white to-emerald-50 p-2.5">
                 <svg viewBox="0 0 640 220" className="h-32 w-full">
                   <defs>
                     <linearGradient id="soranaLine" x1="0" x2="1">
@@ -335,7 +331,7 @@ function DashboardScreen() {
                       <stop offset="100%" stopColor="#1E3A8A" />
                     </linearGradient>
                   </defs>
-                  <g fill="none" stroke="currentColor" className="text-slate-200 dark:text-slate-800">
+                  <g fill="none" stroke="currentColor" className="text-slate-200">
                     {[40, 90, 140, 190].map((y) => (
                       <path key={y} d={`M20 ${y} H620`} strokeWidth="1" />
                     ))}
@@ -368,23 +364,20 @@ function DashboardScreen() {
                   { label: "Expenses", value: "KES 240K" },
                   { label: "Balance", value: "KES 380K" },
                 ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-[1rem] bg-slate-50 p-2.5 dark:bg-white/5"
-                  >
-                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</p>
-                    <p className="mt-1 text-[0.9rem] font-semibold text-slate-950 dark:text-white">{item.value}</p>
+                  <div key={item.label} className="rounded-[1rem] bg-slate-50 p-2.5">
+                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500">{item.label}</p>
+                    <p className="mt-1 text-[0.9rem] font-semibold text-slate-950">{item.value}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="space-y-3">
-              <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
+              <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Recent activity</p>
-                    <h3 className="mt-1 text-[0.92rem] font-semibold text-slate-950 dark:text-white">Live updates</h3>
+                    <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Recent activity</p>
+                    <h3 className="mt-1 text-[0.92rem] font-semibold text-slate-950">Live updates</h3>
                   </div>
                   <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-primary">
                     3 min ago
@@ -399,7 +392,7 @@ function DashboardScreen() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="rounded-[0.95rem] border border-slate-200/80 bg-slate-50 px-3 py-2.5 text-[0.85rem] text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
+                      className="rounded-[0.95rem] border border-slate-200/80 bg-slate-50 px-3 py-2.5 text-[0.85rem] text-slate-600"
                     >
                       {item}
                     </div>
@@ -407,10 +400,10 @@ function DashboardScreen() {
                 </div>
               </div>
 
-              <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-[#0f172a]">
-                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Next action</p>
-                <p className="mt-2 text-[0.92rem] font-semibold text-slate-950 dark:text-white">12 maintenance items awaiting approval</p>
-                <p className="mt-1 text-[0.78rem] leading-5 text-slate-500 dark:text-slate-400">
+              <div className="rounded-[1.4rem] border border-slate-200 bg-white p-3.5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)]">
+                <p className="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Next action</p>
+                <p className="mt-2 text-[0.92rem] font-semibold text-slate-950">12 maintenance items awaiting approval</p>
+                <p className="mt-1 text-[0.78rem] leading-5 text-slate-500">
                   Stay ahead of maintenance, collections, and tenant communication with one secure platform.
                 </p>
               </div>
@@ -424,19 +417,19 @@ function DashboardScreen() {
 
 function MobileScreen() {
   return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-2.5 shadow-[0_18px_45px_-28px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-slate-950 dark:shadow-[0_18px_45px_-28px_rgba(0,0,0,0.7)]">
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-2.5 shadow-[0_18px_45px_-28px_rgba(15,23,42,0.35)]">
       <div className="flex items-center justify-between px-2 pb-2.5">
         <div>
-          <p className="text-[0.68rem] uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Sorana</p>
-          <p className="text-[0.85rem] font-semibold text-slate-950 dark:text-white">Dashboard</p>
+          <p className="text-[0.68rem] uppercase tracking-[0.22em] text-slate-500">Sorana</p>
+          <p className="text-[0.85rem] font-semibold text-slate-950">Dashboard</p>
         </div>
         <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary to-sky-500" />
       </div>
 
-      <div className="space-y-2.5 rounded-[1.15rem] bg-slate-50 p-2.5 dark:bg-white/5">
-        <div className="rounded-[0.95rem] bg-white p-2.5 dark:bg-slate-900">
-          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Monthly Revenue</p>
-          <p className="mt-1 text-[0.95rem] font-bold text-slate-950 dark:text-white">KES 2.8M</p>
+      <div className="space-y-2.5 rounded-[1.15rem] bg-slate-50 p-2.5">
+        <div className="rounded-[0.95rem] bg-white p-2.5">
+          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-500">Monthly Revenue</p>
+          <p className="mt-1 text-[0.95rem] font-bold text-slate-950">KES 2.8M</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           {[
@@ -445,22 +438,22 @@ function MobileScreen() {
             { label: "Pending", value: "12" },
             { label: "Bookings", value: "38" },
           ].map((item) => (
-            <div key={item.label} className="rounded-[0.85rem] bg-white p-2 dark:bg-slate-900">
-              <p className="text-[0.65rem] uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{item.label}</p>
-              <p className="mt-1 text-[0.88rem] font-semibold text-slate-950 dark:text-white">{item.value}</p>
+            <div key={item.label} className="rounded-[0.85rem] bg-white p-2">
+              <p className="text-[0.65rem] uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+              <p className="mt-1 text-[0.88rem] font-semibold text-slate-950">{item.value}</p>
             </div>
           ))}
         </div>
 
-        <div className="rounded-[0.95rem] border border-slate-200 bg-white p-2.5 dark:border-white/10 dark:bg-slate-900">
-          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Today</p>
+        <div className="rounded-[0.95rem] border border-slate-200 bg-white p-2.5">
+          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-500">Today</p>
           <div className="mt-2 space-y-1.5">
             {[
               "12 maintenance items waiting",
               "8 payments received today",
               "3 Airbnb bookings confirmed",
             ].map((item) => (
-              <div key={item} className="rounded-[0.8rem] bg-slate-50 px-2.5 py-2 text-[0.8rem] text-slate-600 dark:bg-white/5 dark:text-slate-300">
+              <div key={item} className="rounded-[0.8rem] bg-slate-50 px-2.5 py-2 text-[0.8rem] text-slate-600">
                 {item}
               </div>
             ))}
@@ -475,10 +468,10 @@ export function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="relative isolate overflow-hidden pt-24 pb-14 md:pt-28 md:pb-16 lg:min-h-[88vh] lg:flex lg:items-center [font-family:var(--font-sans)] [&_*]:font-sans">
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_16%,rgba(59,130,246,0.14),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(66,199,117,0.14),transparent_26%),linear-gradient(180deg,#ffffff_0%,#f6fbff_52%,#eff6ff_100%)] dark:bg-[radial-gradient(circle_at_18%_14%,rgba(59,130,246,0.18),transparent_30%),radial-gradient(circle_at_80%_18%,rgba(16,185,129,0.16),transparent_28%),linear-gradient(180deg,#020617_0%,#0f172a_52%,#020617_100%)]" />
-        <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:72px_72px] opacity-50 dark:opacity-15" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/85 to-transparent dark:from-slate-950/70" />
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_110%,rgba(255,255,255,0.75),transparent_35%)] dark:bg-[radial-gradient(circle_at_50%_115%,rgba(15,23,42,0.25),transparent_38%)]" />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_16%,rgba(59,130,246,0.14),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(66,199,117,0.14),transparent_26%),linear-gradient(180deg,#ffffff_0%,#f6fbff_52%,#eff6ff_100%)]" />
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:72px_72px] opacity-50" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/90 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_110%,rgba(255,255,255,0.8),transparent_35%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-10">
@@ -486,7 +479,7 @@ export function HomePage() {
               <motion.div
                 custom={0}
                 variants={heroMotion}
-                className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-white/85 px-3.5 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-sky-900 shadow-[0_16px_40px_-28px_rgba(30,58,138,0.3)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200"
+                className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-white/90 px-3.5 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-sky-900 shadow-[0_16px_40px_-28px_rgba(30,58,138,0.3)] backdrop-blur"
               >
                 <span className="h-2 w-2 rounded-full bg-primary" />
                 Property Management Software
@@ -495,7 +488,7 @@ export function HomePage() {
               <motion.h1
                 custom={0.06}
                 variants={heroMotion}
-                className="mt-5 max-w-[34rem] text-[2rem] font-extrabold tracking-[-0.04em] leading-[1.05] text-slate-950 dark:text-white sm:text-[2.5rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.5rem]"
+                className="mt-5 max-w-[34rem] text-[2rem] font-extrabold tracking-[-0.04em] leading-[1.05] text-slate-950 sm:text-[2.5rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.5rem]"
               >
                 Manage Every Property From One Intelligent Dashboard
               </motion.h1>
@@ -503,7 +496,7 @@ export function HomePage() {
               <motion.p
                 custom={0.12}
                 variants={heroMotion}
-                className="mt-5 max-w-[35rem] text-[0.9rem] leading-7 text-slate-600 dark:text-slate-300 sm:text-[0.95rem] md:text-[1rem]"
+                className="mt-5 max-w-[35rem] text-[0.9rem] leading-7 text-slate-600 sm:text-[0.95rem] md:text-[1rem]"
               >
                 Manage properties, tenants, rent collection, Airbnb bookings, expenses, reports and payments from one
                 secure cloud platform built for landlords, property managers and Airbnb hosts.
@@ -521,7 +514,7 @@ export function HomePage() {
                 </a>
                 <Link
                   href="/contact-us"
-                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 text-[0.9rem] font-semibold text-slate-900 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800 sm:w-auto md:h-12 md:px-7 md:text-[0.95rem]"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 text-[0.9rem] font-semibold text-slate-900 shadow-[0_16px_34px_-28px_rgba(15,23,42,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 sm:w-auto md:h-12 md:px-7 md:text-[0.95rem]"
                 >
                   Book a Demo
                   <ArrowRight className="h-4 w-4" />
@@ -533,26 +526,26 @@ export function HomePage() {
                   <motion.div
                     key={item}
                     whileHover={{ y: -3 }}
-                    className="flex items-center gap-2.5 rounded-2xl border border-slate-200/80 bg-white/90 px-3 py-2.5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70"
+                    className="flex items-center gap-2.5 rounded-2xl border border-slate-200/80 bg-white/90 px-3 py-2.5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur"
                   >
                     <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10">
                       <BadgeCheck className="h-4.5 w-4.5 text-primary" />
                     </span>
                     <div>
-                      <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Trust</p>
-                      <p className="text-[0.85rem] font-semibold text-slate-900 dark:text-white">{item}</p>
+                      <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500">Trust</p>
+                      <p className="text-[0.85rem] font-semibold text-slate-900">{item}</p>
                     </div>
                   </motion.div>
                 ))}
               </motion.div>
 
               <motion.div custom={0.3} variants={heroMotion} className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2.5">
-                <div className="flex items-center gap-2 text-[0.85rem] text-slate-600 dark:text-slate-300">
+                <div className="flex items-center gap-2 text-[0.85rem] text-slate-600">
                   <span className="flex -space-x-2">
                     {[1, 2, 3].map((item) => (
                       <span
                         key={item}
-                        className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white bg-sky-100 text-[0.68rem] font-semibold text-sky-900 shadow-sm dark:border-slate-950 dark:bg-slate-800 dark:text-slate-100"
+                        className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white bg-sky-100 text-[0.68rem] font-semibold text-sky-900 shadow-sm"
                       >
                         {item}
                       </span>
@@ -564,13 +557,13 @@ export function HomePage() {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={star} className="h-3.5 w-3.5 fill-current" />
                   ))}
-                  <span className="ml-1 text-[0.85rem] text-slate-600 dark:text-slate-300">Premium property experience</span>
+                  <span className="ml-1 text-[0.85rem] text-slate-600">Premium property experience</span>
                 </div>
               </motion.div>
             </motion.div>
 
             <div className="relative mx-auto w-full max-w-[42rem] lg:-translate-y-6 lg:origin-top lg:scale-[0.88]">
-              <div className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_18%,rgba(66,199,117,0.16),transparent_28%),radial-gradient(circle_at_70%_22%,rgba(59,130,246,0.16),transparent_30%)] blur-3xl dark:bg-[radial-gradient(circle_at_30%_18%,rgba(66,199,117,0.12),transparent_28%),radial-gradient(circle_at_70%_22%,rgba(59,130,246,0.18),transparent_30%)]" />
+              <div className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_18%,rgba(66,199,117,0.16),transparent_28%),radial-gradient(circle_at_70%_22%,rgba(59,130,246,0.16),transparent_30%)] blur-3xl" />
 
               <div className="hidden lg:block">
                 <MetricBubble label={floatingMetrics[0].label} value={floatingMetrics[0].value} className="absolute -left-6 top-8 z-20 w-[11.5rem]" delay={0.15} />
@@ -588,12 +581,12 @@ export function HomePage() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                 whileHover={{ y: -3 }}
               >
-                <div className="rounded-[2.35rem] bg-gradient-to-b from-slate-300 to-slate-500 p-2.5 pb-3 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.5)] dark:from-slate-700 dark:to-slate-950">
-                  <div className="rounded-[1.95rem] bg-white/85 p-2.5 backdrop-blur dark:bg-[#020617]">
-                    <div className="mx-auto mb-2.5 h-1.5 w-24 rounded-full bg-slate-300 dark:bg-white/15" />
+                <div className="rounded-[2.35rem] bg-gradient-to-b from-slate-200 to-slate-400 p-2.5 pb-3 shadow-[0_32px_80px_-48px_rgba(15,23,42,0.35)]">
+                  <div className="rounded-[1.95rem] bg-white/92 p-2.5 backdrop-blur">
+                    <div className="mx-auto mb-2.5 h-1.5 w-24 rounded-full bg-slate-300" />
                     <DashboardScreen />
                   </div>
-                  <div className="mx-auto mt-2.5 h-3 w-[40%] rounded-b-full bg-gradient-to-b from-slate-400 to-slate-600 dark:from-slate-700 dark:to-slate-950" />
+                  <div className="mx-auto mt-2.5 h-3 w-[40%] rounded-b-full bg-gradient-to-b from-slate-300 to-slate-500" />
                 </div>
               </motion.div>
 
@@ -604,8 +597,8 @@ export function HomePage() {
                 transition={{ duration: 0.72, delay: 0.16, ease: [0.16, 1, 0.3, 1] as const }}
                 whileHover={{ y: -3 }}
               >
-                <div className="rounded-[2.15rem] bg-gradient-to-b from-slate-200 to-slate-400 p-1.5 shadow-[0_28px_70px_-46px_rgba(15,23,42,0.5)] dark:from-slate-700 dark:to-slate-950">
-                  <div className="rounded-[2rem] bg-white p-2 dark:bg-[#020617]">
+                <div className="rounded-[2.15rem] bg-gradient-to-b from-slate-100 to-slate-300 p-1.5 shadow-[0_28px_70px_-46px_rgba(15,23,42,0.35)]">
+                  <div className="rounded-[2rem] bg-white p-2">
                     <MobileScreen />
                   </div>
                 </div>
@@ -613,9 +606,9 @@ export function HomePage() {
 
               <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:hidden">
                 {floatingMetrics.map((metric) => (
-                  <div key={metric.label} className="rounded-2xl border border-slate-200/80 bg-white/90 px-3 py-2.5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70">
-                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{metric.label}</p>
-                    <p className="mt-1 text-[0.9rem] font-semibold text-slate-950 dark:text-white">{metric.value}</p>
+                  <div key={metric.label} className="rounded-2xl border border-slate-200/80 bg-white/90 px-3 py-2.5 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] backdrop-blur">
+                    <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-500">{metric.label}</p>
+                    <p className="mt-1 text-[0.9rem] font-semibold text-slate-950">{metric.value}</p>
                   </div>
                 ))}
               </div>
