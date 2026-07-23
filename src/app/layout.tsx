@@ -97,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
         <script
           type="application/ld+json"
           // LocalBusiness schema for SEO rich results
