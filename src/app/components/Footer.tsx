@@ -80,7 +80,7 @@ export default function Footer() {
               </a>
               <p>{site.contact.address}</p>
               {site.contact.phones.map((p) => (
-                <a key={p} href={`tel:${p}`} className="block hover:text-primary transition-colors">
+                <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="block hover:text-primary transition-colors">
                   {p.replace("+254", "+254 ").replace(/(\d{3})(\d{3})(\d{3})$/, "$1 $2 $3")}
                 </a>
               ))}

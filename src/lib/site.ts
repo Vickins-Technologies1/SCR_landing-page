@@ -11,9 +11,9 @@ export const site = {
   },
   contact: {
     email: "soranapropertymanagers@gmail.com",
-    phones: ["+254117649850", "+254745963183"],
+    phones: ["0117 665154", "0117 782951"],
     address: "Kerugoya, Kenya",
-    whatsapp: "+254745963183",
+    whatsapp: "0117 782951",
   },
   social: {
     facebook: "https://www.facebook.com/share/18Fx8TFFCZ/",

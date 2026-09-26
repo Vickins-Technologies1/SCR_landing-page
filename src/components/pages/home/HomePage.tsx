@@ -222,9 +222,9 @@ function MetricBubble({
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] as const }}
       whileHover={{ y: -4, scale: 1.01 }}
     >
-      <div className="rounded-2xl border border-slate-200/80 bg-white/92 px-3.5 py-2.5 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.22)] backdrop-blur-xl">
-        <p className="text-[0.7rem] uppercase tracking-[0.2em] text-slate-500">{label}</p>
-        <p className="mt-1 text-[0.95rem] font-bold text-slate-950">{value}</p>
+      <div className="rounded-2xl border border-slate-200/80 bg-white/92 px-3.5 py-2.5 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.22)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/70">
+        <p className="text-[0.7rem] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{label}</p>
+        <p className="mt-1 text-[0.95rem] font-bold text-slate-950 dark:text-white">{value}</p>
       </div>
     </motion.div>
   );
@@ -844,7 +844,7 @@ export function HomePage() {
               <p className="eyebrow">Contact</p>
               <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold">Ready to move your portfolio onto Sorana?</h2>
               <p className="mx-auto mt-4 max-w-2xl text-sm md:text-base text-muted-foreground">
-                Visit {site.url}, email {site.contact.email}, or call +254 117 649 850 and +254 745 963 183 to get
+                Visit {site.url}, email {site.contact.email}, or call 0117 665154 and 0117 782951 to get
                 started with the right setup for your properties.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -863,7 +863,7 @@ export function HomePage() {
                   Email Us
                 </a>
                 <a
-                  href={`tel:+254117649850`}
+                  href="tel:0117665154"
                   className="inline-flex items-center gap-2 rounded-full border border-border/60 px-6 py-3.5 text-sm font-semibold text-foreground transition hover:bg-muted/60"
                 >
                   <Phone className="h-4 w-4" />

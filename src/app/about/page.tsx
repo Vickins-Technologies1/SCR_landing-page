@@ -195,7 +195,7 @@ export default function About() {
                   <strong className="text-foreground">Office:</strong> Kerugoya, Kenya
                 </p>
                 <p>
-                  <strong className="text-foreground">Phone:</strong> +254 117 649 850 / +254 745 963 183
+                  <strong className="text-foreground">Phone:</strong> 0117 665154 / 0117 782951
                 </p>
                 <p>
                   <strong className="text-foreground">Email:</strong> soranapropertymanagers@gmail.com
