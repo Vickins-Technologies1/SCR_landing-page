@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { site } from "@/lib/site";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { AppDownloadPrompt } from "@/components/site/AppDownloadPrompt";
 
 const manrope = localFont({
   src: [
@@ -124,6 +125,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <FloatingWhatsApp />
+        <AppDownloadPrompt />
         </ThemeProvider>
       </body>
     </html>
